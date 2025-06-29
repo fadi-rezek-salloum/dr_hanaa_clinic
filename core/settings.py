@@ -129,7 +129,7 @@ WHITENOISE_MANIFEST_STRICT = False
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
 CSRF_TRUSTED_ORIGINS = [
-    "drhanaaclinic-production.up.railway.app",
-    "ha-praxis.com",
-    "www.ha-praxis.com",
+    "https://drhanaaclinic-production.up.railway.app",
+    "https://ha-praxis.com",
+    "https://www.ha-praxis.com",
 ]
