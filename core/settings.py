@@ -126,8 +126,10 @@ DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER")
 TAGGIT_CASE_INSENSITIVE = True
 
 WHITENOISE_MANIFEST_STRICT = False
-SECURE_PROXY_SSL_HEADER = None
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
-CSRF_TRUSTED_ORIGINS = "*"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
+CSRF_TRUSTED_ORIGINS = [
+    "drhanaaclinic-production.up.railway.app",
+    "ha-praxis.com",
+    "www.ha-praxis.com",
+]
