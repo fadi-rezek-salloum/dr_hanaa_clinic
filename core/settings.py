@@ -11,7 +11,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "https://drhanaaclinic-production.up.railway.app",
+    "https://ha-praxis.com",
+    "https://www.ha-praxis.com",
+    "i0mqo30q.up.railway.app",
+]
 
 INSTALLED_APPS = [
     "jazzmin",
@@ -132,4 +137,5 @@ CSRF_TRUSTED_ORIGINS = [
     "https://drhanaaclinic-production.up.railway.app",
     "https://ha-praxis.com",
     "https://www.ha-praxis.com",
+    "i0mqo30q.up.railway.app",
 ]
