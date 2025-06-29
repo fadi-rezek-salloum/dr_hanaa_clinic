@@ -12,10 +12,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://drhanaaclinic-production.up.railway.app",
-    "https://ha-praxis.com",
-    "https://www.ha-praxis.com",
-    "https://i0mqo30q.up.railway.app",
+    "drhanaaclinic-production.up.railway.app",
+    "ha-praxis.com",
+    "www.ha-praxis.com",
+    "i0mqo30q.up.railway.app",
 ]
 
 INSTALLED_APPS = [
