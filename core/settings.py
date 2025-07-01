@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [
     "ha-praxis.com",
     "www.ha-praxis.com",
     "i0mqo30q.up.railway.app",
+    "localhost",
 ]
 
 INSTALLED_APPS = [
