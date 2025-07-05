@@ -12,10 +12,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "drhanaaclinic-production.up.railway.app",
     "ha-praxis.com",
     "www.ha-praxis.com",
-    "i0mqo30q.up.railway.app",
     "localhost",
 ]
 
@@ -66,7 +64,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.db.backends.mysql",
         "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
         "PASSWORD": os.getenv("DB_PASSWORD"),
@@ -135,8 +133,6 @@ WHITENOISE_MANIFEST_STRICT = False
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
 CSRF_TRUSTED_ORIGINS = [
-    "https://drhanaaclinic-production.up.railway.app",
     "https://ha-praxis.com",
     "https://www.ha-praxis.com",
-    "https://i0mqo30q.up.railway.app",
 ]
