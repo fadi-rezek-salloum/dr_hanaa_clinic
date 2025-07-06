@@ -127,7 +127,7 @@ TAGGIT_CASE_INSENSITIVE = True
 
 WHITENOISE_MANIFEST_STRICT = False
 
-# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
 CSRF_TRUSTED_ORIGINS = [
     "https://ha-praxis.com",
     "https://www.ha-praxis.com",
