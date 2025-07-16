@@ -24,6 +24,14 @@ class IndexView(TemplateView):
         return context
 
 
+class ImpressumView(TemplateView):
+    template_name = "base/impressum.html"
+
+
+class DatenschutzView(TemplateView):
+    template_name = "base/datenschutz.html"
+
+
 class ContactView(FormView):
     template_name = "base/index.html"
     form_class = ContactForm

@@ -117,4 +117,5 @@
 			navbarToggler.classList.toggle("active");
 		});
 	}
+	
 })();
