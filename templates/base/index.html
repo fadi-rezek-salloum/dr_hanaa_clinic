@@ -1,6 +1,7 @@
 {% include "_base.html" %}
 
 {% load static %}
+{% load cache %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -286,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
         <div class="row">
+            {% cache 3600 team_list %}
             {% for member in staff %}
             <div class="col-lg-3 col-md-6 mb-30">
                 <div class="single-team text-center">
@@ -313,6 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Kein Praxisteam verfügbar.</p>
             </div>
             {% endfor %}
+            {% endcache %}
         </div>
     </div>
 </section>
@@ -393,6 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </ul>
                     <h4 class="mt-20 mb-10">Freie Annahme</h4>
                     <p><strong>Um telefonische Voranmeldung wird gebeten.</strong></p>
+                    {% cache 3600 schedules_list %}
                     {% for admission in free_admissions %}
                     <p><strong>{{ admission.get_wochentag_display }}:</strong> {{ admission.startzeit|time:"H:i" }} - {{ admission.endzeit|time:"H:i" }} Uhr</p>
                     {% empty %}
@@ -418,6 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <li>Keine Schließzeiten geplant.</li>
                         {% endfor %}
                     </ul>
+                    {% endcache %}
                     <a href="#contact" class="main-btn btn-filled mt-20 text-white">Kontaktieren Sie uns</a>
                 </div>
             </div>

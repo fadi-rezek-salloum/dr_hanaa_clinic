@@ -1,3 +1,5 @@
+import threading
+
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
@@ -17,7 +19,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["staff"] = Staff.objects.all().order_by("name")
+        context["staff"] = Staff.objects.all().order_by("name").prefetch_related("tags")
         context["free_admissions"] = FreeAdmission.objects.all()
         context["consultation_times"] = ConsultationTime.objects.all()
         context["practice_closures"] = PracticeClosure.objects.all()
@@ -49,7 +51,9 @@ class ContactView(FormView):
             to=[contact.email],
         )
         email.content_subtype = "html"
-        email.send()
+        
+        # Send email asynchronously to prevent blocking the request
+        threading.Thread(target=email.send, kwargs={"fail_silently": True}).start()
 
         messages.success(
             self.request,
