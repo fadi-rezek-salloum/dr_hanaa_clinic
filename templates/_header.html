@@ -46,25 +46,28 @@
 								<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 									<ul id="nav" class="navbar-nav ms-auto">
 										<li class="nav-item">
-											<a class="page-scroll" href="#home">Startseite</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#home">Startseite</a>
 										</li>
 										<li class="nav-item">
-											<a class="page-scroll" href="#about">Über Uns</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#about">Über Uns</a>
 										</li>
 										<li class="nav-item">
-											<a class="page-scroll" href="#services">Leistungen</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#services">Leistungen</a>
 										</li>
 										<li class="nav-item">
-											<a class="page-scroll" href="#team">Team</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#team">Team</a>
 										</li>
 										<li class="nav-item">
-											<a class="page-scroll" href="#gallery">Praxisrundgang</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#gallery">Praxisrundgang</a>
 										</li>
 										<li class="nav-item">
-											<a class="page-scroll" href="#anfahrt">Anfahrt</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#anfahrt">Anfahrt</a>
 										</li>
 										<li class="nav-item">
-											<a class="page-scroll" href="#contact">Kontakt</a>
+											<a class="{% if request.resolver_match.url_name == 'index' %}page-scroll{% endif %}" href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#contact">Kontakt</a>
+										</li>
+										<li class="nav-item">
+											<a class="{% if request.resolver_match.url_name == 'neupatienten' %}active{% endif %}" href="{% url 'base:neupatienten' %}">Neupatienten</a>
 										</li>
 									</ul>
 								</div> <!-- navbar collapse -->
@@ -75,6 +78,7 @@
 			</div>
 	</div>
 
+	{% if request.resolver_match.url_name == 'index' %}
 	<div class="slider-wrapper">
 		<!-- ========================= slider-section start ========================= -->
 		<section class="slider-section">
@@ -106,5 +110,6 @@
 		</section>
 		<!-- ========================= slider-section end ========================= -->
 	</div>
+	{% endif %}
 </header>
 <!-- ========================= header end ========================= -->

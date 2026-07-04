@@ -34,6 +34,10 @@ class DatenschutzView(TemplateView):
     template_name = "base/datenschutz.html"
 
 
+class NeupatientenView(TemplateView):
+    template_name = "base/neupatienten.html"
+
+
 class ContactView(FormView):
     template_name = "base/index.html"
     form_class = ContactForm

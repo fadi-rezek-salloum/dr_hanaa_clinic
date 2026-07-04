@@ -23,13 +23,13 @@
                 <div class="footer-social wow fadeInUp" data-wow-delay=".4s">
                     <h4>Schnelllinks</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#about">Über Uns</a></li>
-                        <li><a href="#services">Leistungen</a></li>
-                        <li><a href="#gallery">Praxisrundgang</a></li>
-                        <li><a href="#anfahrt">Anfahrt</a></li>
-                        <li><a href="#contact">Kontakt</a></li>
+                        <li><a href="{% url 'base:index' %}#about">Über Uns</a></li>
+                        <li><a href="{% url 'base:index' %}#services">Leistungen</a></li>
+                        <li><a href="{% url 'base:index' %}#gallery">Praxisrundgang</a></li>
+                        <li><a href="{% url 'base:index' %}#anfahrt">Anfahrt</a></li>
+                        <li><a href="{% url 'base:index' %}#contact">Kontakt</a></li>
                     </ul>
-                    <a href="#top" class="back-to-top btn btn-teal mt-5 wow fadeInUp" data-wow-delay=".6s">Zurück nach oben <i class="fa-solid fa-arrow-up"></i></a>
+                    <a href="#top" class="back-to-top btn btn-teal mt-5 wow fadeInUp" data-wow-delay=".6s" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Zurück nach oben <i class="fa-solid fa-arrow-up"></i></a>
                 </div>  
             </div>
         </div>

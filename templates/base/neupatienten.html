@@ -1,0 +1,316 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+    .neupatienten-section {
+        background-color: #fcfcfc;
+        position: relative;
+    }
+    
+    .info-card {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        padding: 40px;
+        margin-bottom: 40px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    }
+    
+    .card-icon-wrapper {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        background-color: rgba(0, 173, 181, 0.1);
+        color: #00adb5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    
+    .card-title {
+        font-weight: 700;
+        color: #3a424e;
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 15px;
+    }
+    
+    .rule-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    
+    .rule-item-icon {
+        color: #00adb5;
+        margin-right: 15px;
+        margin-top: 5px;
+        font-size: 1.1rem;
+    }
+    
+    .rule-item-content h5 {
+        font-weight: 600;
+        color: #3a424e;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+    }
+    
+    .rule-item-content p {
+        color: #6c757d;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+    
+    .highlight-box {
+        background-color: rgba(255, 193, 7, 0.08);
+        border-left: 4px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 25px;
+    }
+    
+    .highlight-box p {
+        color: #664d03;
+        font-size: 0.95rem;
+        margin-bottom: 0;
+        line-height: 1.6;
+    }
+    
+    .download-section {
+        background: linear-gradient(135deg, #3a424e, #2b3039);
+        border-radius: 20px;
+        padding: 50px 40px;
+        color: #ffffff;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .download-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0, 173, 181, 0.15) 0%, transparent 60%);
+        pointer-events: none;
+    }
+    
+    .download-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #ffffff !important;
+    }
+    
+    .download-subtitle {
+        color: #e2e8f0 !important;
+        max-width: 600px;
+        margin: 0 auto 30px auto;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .download-btn {
+        background-color: #00adb5;
+        color: #ffffff;
+        border: none;
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(0, 173, 181, 0.4);
+    }
+    
+    .download-btn:hover {
+        background-color: #00989e;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 173, 181, 0.6);
+    }
+
+    .badge-legal {
+        display: inline-block;
+        background-color: #dc3545;
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    .specialist-box {
+        background-color: rgba(0, 173, 181, 0.05);
+        border-left: 4px solid #00adb5;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 25px;
+    }
+
+    .specialist-box p {
+        color: #008187;
+        font-size: 0.95rem;
+        margin-bottom: 0;
+        line-height: 1.6;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<section class="neupatienten-section pt-150 pb-120">
+    <div class="shape shape-2">
+        <img src="{% static 'images/shape-2.svg' %}" alt="Shape 2">
+    </div>
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="col-xl-8 mx-auto">
+                <div class="section-title text-center mb-55">
+                    <span class="wow fadeInDown" data-wow-delay=".2s">Wichtige Praxisinformationen</span>
+                    <h2 class="mb-15 wow fadeInUp" data-wow-delay=".4s">Informationen für Neupatienten</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">
+                        Herzlich willkommen in unserer Praxis! Um einen reibungslosen Ablauf zu gewährleisten und Wartezeiten zu minimieren, bitten wir Sie, die folgenden rechtlichen und organisatorischen Regelungen aufmerksam zu lesen.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Left Column: Termine & Absagen -->
+            <div class="col-lg-6 d-flex">
+                <div class="info-card flex-fill wow fadeInLeft" data-wow-delay=".2s">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span class="badge-legal">Rechtlich bindend</span>
+                    <h3 class="card-title">Regelung zur Terminabsage</h3>
+                    <p class="text-muted mb-4">
+                        Unsere Praxis wird als <strong>Bestellpraxis</strong> geführt. Die vereinbarte Zeit ist ausschließlich für Sie reserviert, was uns ermöglicht, Ihre Wartezeiten so kurz wie möglich zu halten.
+                    </p>
+
+                    <!-- Rule Items -->
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Absagefrist (mind. 24h)</h5>
+                            <p>Sollten Sie einen Termin nicht wahrnehmen können, sagen Sie diesen bitte mindestens 24 Stunden vorher ab (telefonisch, per E-Mail oder über unser Kontaktformular).</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-euro-sign"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Ausfallhonorar</h5>
+                            <p>Wird ein Termin nicht rechtzeitig oder gar nicht abgesagt, behalten wir uns das Recht vor, ein Ausfallhonorar in Höhe von <strong>20,00 €</strong> gemäß § 615 BGB privat in Rechnung zu stellen.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Ausnahmen</h5>
+                            <p>Ein Ausfallhonorar wird selbstverständlich nicht fällig bei unverschuldeten Gründen (z. B. plötzliche akute Erkrankung, Unfall).</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Keine Kassenleistung</h5>
+                            <p>Gesetzliche Krankenkassen übernehmen diese Gebühr nicht. Die Rechnung ist von Ihnen privat zu begleichen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Intim- und geschlechtsspezifische Beschwerden -->
+            <div class="col-lg-6 d-flex">
+                <div class="info-card flex-fill wow fadeInRight" data-wow-delay=".4s">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <span class="badge-legal" style="background-color: #00adb5;">Zuständigkeitsregelung</span>
+                    <h3 class="card-title">Geschlechtsspezifische Beschwerden</h3>
+                    <p class="text-muted mb-4">
+                        In unserer hausärztlichen Praxis behandeln wir allgemeinmedizinische Erkrankungen im Rahmen der hausärztlichen Grundversorgung.
+                    </p>
+
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-venus"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Gynäkologische Beschwerden</h5>
+                            <p>Gynäkologische Beschwerden bei Frauen gehören in der Regel nicht zu unserem Behandlungsspektrum. Wir überweisen Sie zur fachärztlichen Abklärung an eine Gynäkologin / einen Gynäkologen.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-mars"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Urologische Beschwerden</h5>
+                            <p>Urologische bzw. genitale Beschwerden bei Männern gehören in der Regel nicht zu unserem Behandlungsspektrum. Wir überweisen Sie zur Abklärung an eine Urologin / einen Urologen.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <div class="rule-item-icon"><i class="fa-solid fa-kit-medical"></i></div>
+                        <div class="rule-item-content">
+                            <h5>Medizinische Notfälle</h5>
+                            <p>In medizinischen Akutsituationen und Notfällen erfolgt selbstverständlich immer eine sofortige medizinische Erstversorgung vor Ort.</p>
+                        </div>
+                    </div>
+
+                    <div class="specialist-box">
+                        <p>
+                            <i class="fa-solid fa-circle-info"></i> Wir danken Ihnen für Ihr Verständnis, dass wir zur Sicherung der Behandlungsqualität konsequent an die entsprechenden Fachärzte überweisen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Intake Form Section -->
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="download-section wow fadeInUp" data-wow-delay=".2s">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 text-lg-start text-center mb-4 mb-lg-0">
+                            <h3 class="download-title"><i class="fas fa-file-signature me-2" style="color: #00adb5;"></i> Aufnahmeformular zum Ausdrucken</h3>
+                            <p class="download-subtitle mb-0">
+                                Sparen Sie Zeit bei Ihrer Anmeldung! Laden Sie unser Aufnahmeformular vorab herunter, drucken Sie es aus, füllen Sie es bequem zu Hause aus und bringen Sie es ausgefüllt zu Ihrem Termin mit.
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-center text-lg-end">
+                            <a href="{% static 'documents/aufnahmeformular.pdf' %}" class="download-btn" download="Aufnahmeformular_Dr_Hanaa_Clinic.pdf">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Herunterladen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% include "_footer.html" %}
+{% endblock content %}

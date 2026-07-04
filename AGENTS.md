@@ -21,13 +21,14 @@ The system uses Django templates for the frontend, SQLite3 as the default databa
 - `/`: Main index page (via `base:index`).
 - `/impressum/`: Legal notice page (via `base:impressum`).
 - `/datenschutz/`: Privacy policy page (via `base:datenschutz`).
+- `/neupatienten/`: Rules, warnings, and registration form download page (via `base:neupatienten`).
 - `/contact/`: POST endpoint for the contact form (via `base:contact`).
 Media URLs are routed under `/media/` when in DEBUG mode.
 
 # 5. Django Views & Business Logic
 The `base` app utilizes Django Class-Based Views (CBVs):
 - **`IndexView` (`TemplateView`)**: Renders `base/index.html`. It overrides `get_context_data` to inject all `Staff`, `FreeAdmission`, `ConsultationTime`, and `PracticeClosure` objects into the template context for dynamic rendering.
-- **`ImpressumView`, `DatenschutzView` (`TemplateView`)**: Render static legal pages.
+- **`ImpressumView`, `DatenschutzView`, `NeupatientenView` (`TemplateView`)**: Render static legal and patient informational pages.
 - **`ContactView` (`FormView`)**: Handles the submission of the `ContactForm`. On valid submission, it saves the `Contact` to the DB, renders an HTML email using `_email.html`, sends it via SMTP, displays a success message, and redirects to `#contact` on the index page.
 
 # 6. Forms & Validation Rules
@@ -36,7 +37,7 @@ The `base` app utilizes Django Class-Based Views (CBVs):
 # 7. Template System & Layout Structure
 - **Base Layout**: `_base.html` provides the overarching HTML skeleton.
 - **Includes**: `_header.html` (navigation), `_footer.html` (footer info), `_preloader.html` (loading animation), `_email.html` (HTML email structure).
-- **Page Templates**: `index.html`, `impressum.html`, and `datenschutz.html` reside in `templates/base/` and extend the base layout or are included where necessary. Context processors are used to inject authentication and message variables globally.
+- **Page Templates**: `index.html`, `impressum.html`, `datenschutz.html`, and `neupatienten.html` reside in `templates/base/` and extend the base layout or are included where necessary. Context processors are used to inject authentication and message variables globally.
 
 # 8. Static & Media Asset Management
 - **Static Files**: Configured to use `static/` URL and `staticfiles/` root. Managed via `WhiteNoiseMiddleware` (without strict manifest generation) for efficient serving in production.
