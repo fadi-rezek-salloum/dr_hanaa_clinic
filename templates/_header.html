@@ -4,16 +4,14 @@
   <!-- Topbar -->
   <div class="topbar">
     <div class="container">
-      <div
-        class="d-flex justify-content-center justify-content-md-start align-items-center gap-4"
-      >
-        <a href="tel:+4935338217" class="d-flex align-items-center gap-2">
-          <i data-lucide="phone" style="width: 14px; height: 14px"></i>
-          03533-8217
+      <div class="d-flex justify-content-center justify-content-md-start align-items-center gap-4">
+        <a href="tel:+4935338217" class="d-flex align-items-center gap-2" aria-label="Telefon: 03533-8217">
+          <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.5 19.79 19.79 0 0 1 1.62 3.83 2 2 0 0 1 3.6 1.64h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l.75-.75a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.62z"/></svg>
+          <span>03533-8217</span>
         </a>
-        <a href="fax:+493533819983" class="d-flex align-items-center gap-2">
-          <i data-lucide="printer" style="width: 14px; height: 14px"></i>
-          Fax: 03533-819983
+        <a href="fax:+493533819983" class="d-flex align-items-center gap-2" aria-label="Fax: 03533-819983">
+          <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 4 10 2 3 2 3 10 6 10 6 4"/><path d="M22 2h-8v8h8V2z"/><path d="M3 14H1v6h8v-2H3v-4z"/><rect x="8" y="14" width="14" height="8" rx="2"/></svg>
+          <span>Fax: 03533-819983</span>
         </a>
       </div>
     </div>
@@ -22,81 +20,49 @@
   <!-- Floating Navbar -->
   <nav class="clinic-nav" aria-label="Hauptnavigation">
     <div class="clinic-nav-inner">
-      <a class="nav-brand" href="{% url 'base:index' %}">
-        <img
-          src="{% static 'images/logo.png' %}"
-          alt="Praxislogo"
-          class="nav-brand-logo"
-          width="42"
-          height="42"
-        />
-        <span class="nav-brand-name d-none d-xl-block"
-          >Dipl. Med. Hanaa Ahmad</span
-        >
+      <a class="nav-brand" href="{% url 'base:index' %}" aria-label="Zur Startseite – Hausarztpraxis Dipl. Med. Hanaa Ahmad">
+        <picture>
+          <source srcset="{% static 'images/logo.webp' %}" type="image/webp">
+          <img
+            src="{% static 'images/logo.png' %}"
+            alt="Praxislogo Hausarztpraxis Dipl. Med. Hanaa Ahmad"
+            class="nav-brand-logo"
+            width="42"
+            height="42"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <span class="nav-brand-name d-none d-xl-block">Dipl. Med. Hanaa Ahmad</span>
       </a>
 
-      <ul class="nav-links" id="navLinks" role="menubar">
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#home"
-            class="page-scroll"
-            role="menuitem"
-            >Startseite</a
-          >
+      <ul class="nav-links" id="navLinks" role="list">
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#home" class="page-scroll">Startseite</a>
         </li>
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#about"
-            class="page-scroll"
-            role="menuitem"
-            >Über Uns</a
-          >
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#about" class="page-scroll">Über Uns</a>
         </li>
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#services"
-            class="page-scroll"
-            role="menuitem"
-            >Leistungen</a
-          >
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#services" class="page-scroll">Leistungen</a>
         </li>
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#team"
-            class="page-scroll"
-            role="menuitem"
-            >Team</a
-          >
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#team" class="page-scroll">Team</a>
         </li>
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#gallery"
-            class="page-scroll"
-            role="menuitem"
-            >Praxis</a
-          >
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#gallery" class="page-scroll">Praxis</a>
         </li>
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#anfahrt"
-            class="page-scroll"
-            role="menuitem"
-            >Anfahrt</a
-          >
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#anfahrt" class="page-scroll">Anfahrt</a>
         </li>
-        <li>
-          <a
-            href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#contact"
-            class="page-scroll"
-            role="menuitem"
-            >Kontakt</a
-          >
+        <li role="listitem">
+          <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#contact" class="page-scroll">Kontakt</a>
         </li>
       </ul>
 
       <div class="d-flex align-items-center gap-2">
         <a href="{% url 'base:neupatienten' %}" class="nav-cta">
-          <i data-lucide="user-plus" style="width: 16px; height: 16px"></i>
+          <svg aria-hidden="true" focusable="false" style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
           <span class="d-none d-sm-inline">Neupatienten</span>
         </a>
         <button
@@ -104,8 +70,9 @@
           id="navToggler"
           aria-label="Menü umschalten"
           aria-expanded="false"
+          aria-controls="navLinks"
         >
-          <i data-lucide="menu" style="width: 22px; height: 22px"></i>
+          <svg aria-hidden="true" focusable="false" style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
       </div>
     </div>
@@ -113,23 +80,31 @@
 
   {% if request.resolver_match.url_name == 'index' %}
   <!-- Hero Section -->
-  <section class="hero">
-    <img
-      src="{% static 'images/slider-1.jpg' %}"
-      alt="Praxis Hintergrund"
-      class="hero-bg-img"
-    />
-    <div class="hero-overlay"></div>
+  <section class="hero" aria-label="Willkommen in der Hausarztpraxis">
+    <picture>
+      <source srcset="{% static 'images/slider-1.webp' %}" type="image/webp">
+      <img
+        src="{% static 'images/slider-1.jpg' %}"
+        alt="Moderne Hausarztpraxis Dipl. med. Hanaa Ahmad in Prösen"
+        class="hero-bg-img"
+        width="1600"
+        height="900"
+        loading="eager"
+        fetchpriority="high"
+        decoding="sync"
+      />
+    </picture>
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container hero-content">
       <div class="row">
         <div class="col-xl-7 col-lg-9">
-          <div class="hero-eyebrow">
+          <div class="hero-eyebrow" aria-hidden="true">
             <span class="hero-eyebrow-dot"></span>
             Ihre Gesundheit in besten Händen
           </div>
           <h1 class="hero-heading">
-            Willkommen in der<br />
-            Hausarztpraxis<br />
+            Willkommen in der<br>
+            Hausarztpraxis<br>
             <em>Dipl. med. Hanaa Ahmad</em>
           </h1>
           <p class="hero-subtitle">
@@ -139,18 +114,15 @@
           <div class="hero-actions">
             <a href="#about" class="btn-primary-luxury page-scroll">
               Mehr erfahren
-              <i
-                data-lucide="arrow-right"
-                style="width: 18px; height: 18px"
-              ></i>
+              <svg aria-hidden="true" focusable="false" style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
             <a href="#contact" class="btn-ghost-light page-scroll">
               Kontakt aufnehmen
             </a>
           </div>
-          <div class="hero-stat-row">
+          <div class="hero-stat-row" aria-label="Praxis Highlights">
             <div class="hero-stat">
-              <span class="hero-stat-number">25+</span>
+              <span class="hero-stat-number" aria-label="Über 25 Jahre Erfahrung">25+</span>
               <span class="hero-stat-label">Jahre Erfahrung</span>
             </div>
             <div class="hero-stat">
@@ -168,6 +140,6 @@
   </section>
   {% else %}
   <!-- Inner page spacer -->
-  <div style="height: 130px; background: var(--c-navy-900)"></div>
+  <div style="height: 130px; background: var(--c-navy-900)" aria-hidden="true"></div>
   {% endif %}
 </header>

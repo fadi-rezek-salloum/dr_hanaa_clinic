@@ -3,15 +3,15 @@
 {% block content %}
 
 {% if messages %}
-<div class="position-fixed top-0 end-0 p-4 mt-5 pt-5" style="z-index: 1100">
+<div class="position-fixed top-0 end-0 p-4 mt-5 pt-5" style="z-index: 1100" role="status" aria-live="polite">
     {% for message in messages %}
     <div class="toast show align-items-center bg-white border-0 mb-3 shadow-lg rounded-3" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body d-flex align-items-center gap-3 py-3 px-4">
-                <i data-lucide="info" style="color: var(--c-teal-500);"></i>
+                <svg aria-hidden="true" focusable="false" style="color: var(--c-teal-500); width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 <span style="font-weight: 500; color: var(--c-navy-900);">{{ message }}</span>
             </div>
-            <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Meldung schließen"></button>
         </div>
     </div>
     {% endfor %}
@@ -22,7 +22,7 @@
 <section id="about" class="section-padding bg-white">
     <div class="container">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+            <div class="col-lg-6 wow animate__fadeInLeft" data-wow-delay="0.1s">
                 <div class="pe-lg-5">
                     <span class="section-eyebrow">Ihre Hausarztpraxis</span>
                     <h2 class="section-title">Medizin mit Zeit, Herz und Verstand</h2>
@@ -30,7 +30,7 @@
                         <p class="mb-4">In unserer freundlichen Praxis in Prösen stehen Sie als Mensch im Mittelpunkt. Wir begleiten Sie mit fachlicher Kompetenz und Einfühlungsvermögen durch alle Lebensphasen – von der Prävention über akute Behandlungen bis zur Langzeitbetreuung.</p>
                         <p>Unser Ziel ist es, schulmedizinische Expertise mit einem ganzheitlichen Blick auf Ihre individuellen Bedürfnisse zu verbinden. Dabei legen wir besonderen Wert auf eine ausführliche und verständliche Beratung.</p>
                     </div>
-                    
+
                     <div class="row g-4 mt-2">
                         <div class="col-sm-6">
                             <div class="about-stat-box">
@@ -47,21 +47,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
+            <div class="col-lg-6 wow animate__fadeInRight" data-wow-delay="0.3s">
                 <div class="position-relative">
-                    <div class="position-absolute top-0 end-0 translate-middle-y me-5 mt-4" style="z-index: -1;">
-                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="position-absolute top-0 end-0 translate-middle-y me-5 mt-4" style="z-index: -1;" aria-hidden="true">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <circle cx="60" cy="60" r="59" stroke="var(--c-teal-300)" stroke-width="2" stroke-dasharray="8 8"/>
                         </svg>
                     </div>
-                    <img src="{% static 'images/2.jpg' %}" alt="Behandlungsraum" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 600px;" width="800" height="600">
-                    
+                    <picture>
+                        <source srcset="{% static 'images/2.webp' %}" type="image/webp">
+                        <img src="{% static 'images/2.jpg' %}" alt="Moderner Behandlungsraum der Hausarztpraxis" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 500px;" width="800" height="600" loading="lazy" decoding="async">
+                    </picture>
                     <div class="position-absolute bottom-0 start-0 translate-middle-x ms-5 mb-5 bg-white p-4 rounded-4 shadow-lg d-none d-md-block" style="max-width: 280px;">
                         <div class="d-flex align-items-center gap-3 mb-2">
-                            <i data-lucide="check-circle" style="color: var(--c-success); width: 24px; height: 24px;"></i>
-                            <span class="fw-bold text-navy-900" style="color: var(--c-navy-900);">Modernste Technik</span>
+                            <svg aria-hidden="true" focusable="false" style="color: var(--c-success); width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span class="fw-bold" style="color: var(--c-navy-900);">Modernste Technik</span>
                         </div>
-                        <p class="text-muted small mb-0" style="color: var(--text-muted);">Wir nutzen aktuelle medizinische Standards für Ihre optimale Diagnose.</p>
+                        <p class="small mb-0" style="color: var(--text-muted);">Wir nutzen aktuelle medizinische Standards für Ihre optimale Diagnose.</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +74,7 @@
 <!-- ── SERVICES SECTION ── -->
 <section id="services" class="section-padding bg-gradient-light">
     <div class="container">
-        <div class="section-header-center mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="section-header-center mb-5 pb-4 wow animate__fadeInUp" data-wow-delay="0.1s">
             <span class="section-eyebrow section-eyebrow-center">Unsere Leistungen</span>
             <h2 class="section-title">Umfassende Versorgung für Ihre Gesundheit</h2>
             <p class="section-body">Wir bieten Ihnen ein breites Spektrum an allgemeinmedizinischen und internistischen Leistungen direkt vor Ort.</p>
@@ -82,37 +84,37 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card-luxury h-100 p-4 p-xl-5">
                     <div class="service-icon-wrap" style="background: rgba(13,27,62,0.05); color: var(--c-navy-700);">
-                        <i data-lucide="stethoscope"></i>
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
                     </div>
                     <h3 class="h5 mb-3" style="color: var(--c-navy-900);">Allgemeinmedizin</h3>
-                    <p class="text-muted mb-0" style="font-size: 0.9375rem; line-height: 1.6;">Körperliche Untersuchung, Wundversorgung, Hausbesuche und akute Behandlungen.</p>
+                    <p class="mb-0" style="font-size: 0.9375rem; line-height: 1.6; color: var(--text-muted);">Körperliche Untersuchung, Wundversorgung, Hausbesuche und akute Behandlungen.</p>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card-luxury h-100 p-4 p-xl-5">
                     <div class="service-icon-wrap" style="background: var(--c-teal-100); color: var(--c-teal-500);">
-                        <i data-lucide="shield-check"></i>
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                     </div>
                     <h3 class="h5 mb-3" style="color: var(--c-navy-900);">Prävention</h3>
-                    <p class="text-muted mb-0" style="font-size: 0.9375rem; line-height: 1.6;">Check-Up 18/35, Hautkrebs-Screening, Darmkrebsvorsorge und Impfberatung.</p>
+                    <p class="mb-0" style="font-size: 0.9375rem; line-height: 1.6; color: var(--text-muted);">Check-Up 18/35, Hautkrebs-Screening, Darmkrebsvorsorge und Impfberatung.</p>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card-luxury h-100 p-4 p-xl-5">
                     <div class="service-icon-wrap" style="background: var(--c-gold-100); color: var(--c-gold-400);">
-                        <i data-lucide="activity"></i>
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     </div>
                     <h3 class="h5 mb-3" style="color: var(--c-navy-900);">Diagnostik</h3>
-                    <p class="text-muted mb-0" style="font-size: 0.9375rem; line-height: 1.6;">Lungenfunktion (Spirometrie), EKG, 24-h-EKG, Langzeit-Blutdruckmessung.</p>
+                    <p class="mb-0" style="font-size: 0.9375rem; line-height: 1.6; color: var(--text-muted);">Lungenfunktion (Spirometrie), EKG, 24-h-EKG, Langzeit-Blutdruckmessung.</p>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card-luxury h-100 p-4 p-xl-5">
                     <div class="service-icon-wrap" style="background: rgba(220,38,38,0.08); color: var(--c-danger);">
-                        <i data-lucide="heart-pulse"></i>
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity=".3"/></svg>
                     </div>
                     <h3 class="h5 mb-3" style="color: var(--c-navy-900);">Chroniker-DMP</h3>
-                    <p class="text-muted mb-0" style="font-size: 0.9375rem; line-height: 1.6;">Strukturierte Programme für Diabetes Typ 2, KHK, COPD und Asthma.</p>
+                    <p class="mb-0" style="font-size: 0.9375rem; line-height: 1.6; color: var(--text-muted);">Strukturierte Programme für Diabetes Typ 2, KHK, COPD und Asthma.</p>
                 </div>
             </div>
         </div>
@@ -133,13 +135,20 @@
             <div class="col-lg-4 col-md-6">
                 <div class="team-card h-100 text-center">
                     <div class="team-card-img-wrap">
-                        <img src="{% if member.picture %}{{ member.picture.url }}{% else %}{% static 'images/doctor.png' %}{% endif %}" alt="{{ member.name }}" loading="lazy" width="400" height="400">
+                        {% if member.picture %}
+                        <img src="{{ member.picture.url }}" alt="{{ member.title|default:'' }} {{ member.name }}, {{ member.specialty }}" loading="lazy" decoding="async" width="400" height="400">
+                        {% else %}
+                        <picture>
+                            <source srcset="{% static 'images/doctor.webp' %}" type="image/webp">
+                            <img src="{% static 'images/doctor.png' %}" alt="{{ member.title|default:'' }} {{ member.name }}, {{ member.specialty }}" loading="lazy" decoding="async" width="400" height="400">
+                        </picture>
+                        {% endif %}
                     </div>
                     <div class="team-card-body">
                         <h3 class="team-card-name">{{ member.title|default:'' }} {{ member.name }}</h3>
                         <p class="team-card-specialty">{{ member.specialty }}</p>
                         {% if member.tags.all %}
-                        <div class="d-flex flex-wrap justify-content-center gap-1 mt-3">
+                        <div class="d-flex flex-wrap justify-content-center gap-1 mt-3" aria-label="Fachgebiete">
                             {% for tag in member.tags.all %}
                             <span class="team-tag">{{ tag.name }}</span>
                             {% endfor %}
@@ -149,7 +158,7 @@
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center text-muted">Keine Team-Daten verfügbar.</div>
+            <div class="col-12 text-center" style="color: var(--text-muted);">Keine Team-Daten verfügbar.</div>
             {% endfor %}
         </div>
     </div>
@@ -166,49 +175,64 @@
 
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
-                <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/0.jpg' %}">
+                <button class="gallery-card w-100" aria-label="Bild vergrößern: Empfangsbereich" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/0.jpg' %}" data-img-alt="Empfangsbereich der Praxis">
                     <div class="gallery-img-wrapper">
-                        <img src="{% static 'images/0.jpg' %}" alt="Empfang" loading="lazy" width="800" height="600">
+                        <picture>
+                            <source srcset="{% static 'images/0.webp' %}" type="image/webp">
+                            <img src="{% static 'images/0.jpg' %}" alt="Empfangsbereich der Hausarztpraxis" loading="lazy" decoding="async" width="800" height="600">
+                        </picture>
                     </div>
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon-wrap"><i data-lucide="maximize-2"></i></div>
-                        <h4 class="gallery-title">Empfang</h4>
+                    <div class="gallery-overlay" aria-hidden="true">
+                        <div class="gallery-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                        </div>
+                        <h3 class="gallery-title">Empfang</h3>
                     </div>
-                </div>
+                </button>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/1.jpg' %}">
+                <button class="gallery-card w-100" aria-label="Bild vergrößern: Wartezimmer" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/1.jpg' %}" data-img-alt="Wartezimmer der Praxis">
                     <div class="gallery-img-wrapper">
-                        <img src="{% static 'images/1.jpg' %}" alt="Wartezimmer" loading="lazy" width="800" height="600">
+                        <picture>
+                            <source srcset="{% static 'images/1.webp' %}" type="image/webp">
+                            <img src="{% static 'images/1.jpg' %}" alt="Wartezimmer der Hausarztpraxis" loading="lazy" decoding="async" width="800" height="600">
+                        </picture>
                     </div>
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon-wrap"><i data-lucide="maximize-2"></i></div>
-                        <h4 class="gallery-title">Wartezimmer</h4>
+                    <div class="gallery-overlay" aria-hidden="true">
+                        <div class="gallery-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                        </div>
+                        <h3 class="gallery-title">Wartezimmer</h3>
                     </div>
-                </div>
+                </button>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/2.jpg' %}">
+                <button class="gallery-card w-100" aria-label="Bild vergrößern: Sprechzimmer" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/2.jpg' %}" data-img-alt="Sprechzimmer der Praxis">
                     <div class="gallery-img-wrapper">
-                        <img src="{% static 'images/2.jpg' %}" alt="Sprechzimmer" loading="lazy" width="800" height="600">
+                        <picture>
+                            <source srcset="{% static 'images/2.webp' %}" type="image/webp">
+                            <img src="{% static 'images/2.jpg' %}" alt="Sprechzimmer der Hausarztpraxis" loading="lazy" decoding="async" width="800" height="600">
+                        </picture>
                     </div>
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon-wrap"><i data-lucide="maximize-2"></i></div>
-                        <h4 class="gallery-title">Sprechzimmer</h4>
+                    <div class="gallery-overlay" aria-hidden="true">
+                        <div class="gallery-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                        </div>
+                        <h3 class="gallery-title">Sprechzimmer</h3>
                     </div>
-                </div>
+                </button>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Lightbox Modal -->
-<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-label="Praxisfoto Vollansicht" aria-modal="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content bg-transparent border-0">
             <div class="modal-body p-0 text-center position-relative">
-                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Schließen" style="z-index:1060; background-color: rgba(0,0,0,0.5); padding: 12px; border-radius: 50%;"></button>
-                <img id="modalImage" src="" class="img-fluid rounded-4 shadow-xl" style="max-height: 85vh; object-fit: contain;">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Lightbox schließen" style="z-index:1060; background-color: rgba(0,0,0,0.5); padding: 12px; border-radius: 50%;"></button>
+                <img id="modalImage" src="" alt="" class="img-fluid rounded-4 shadow-xl" style="max-height: 85vh; object-fit: contain;">
             </div>
         </div>
     </div>
@@ -220,39 +244,45 @@
         <div class="row g-5">
             <div id="contact" class="col-lg-5">
                 <span class="section-eyebrow">Informationen</span>
-                <h2 class="section-title">Anfahrt & Zeiten</h2>
-                
+                <h2 class="section-title">Anfahrt &amp; Zeiten</h2>
+
                 <div class="mt-5">
                     <div class="contact-info-item">
-                        <div class="contact-icon-wrap"><i data-lucide="map-pin"></i></div>
+                        <div class="contact-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
                         <div>
                             <div class="contact-info-label">Praxisadresse</div>
-                            <div class="contact-info-value">
-                                <i data-lucide="building" style="width:14px; height:14px; margin-right:4px;"></i> Schleifweg 3, 04932 Prösen<br>
-                                <i data-lucide="phone" style="width:14px; height:14px; margin-right:4px;"></i> <a href="tel:+4935338217">+49 3533 - 8217</a><br>
-                                <i data-lucide="printer" style="width:14px; height:14px; margin-right:4px;"></i> Fax: +49 3533 - 819983<br>
-                                <i data-lucide="globe" style="width:14px; height:14px; margin-right:4px;"></i> <a href="https://www.ha-praxis.com">www.ha-praxis.com</a>
-                            </div>
+                            <address class="contact-info-value" style="font-style:normal;">
+                                Schleifweg 3, 04932 Prösen<br>
+                                <a href="tel:+4935338217">+49 3533 - 8217</a><br>
+                                Fax: +49 3533 - 819983<br>
+                                <a href="https://www.ha-praxis.com" rel="noopener">www.ha-praxis.com</a>
+                            </address>
                         </div>
                     </div>
 
                     <div class="contact-info-item">
-                        <div class="contact-icon-wrap"><i data-lucide="car"></i></div>
+                        <div class="contact-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        </div>
                         <div>
                             <div class="contact-info-label">Parkmöglichkeiten</div>
                             <div class="contact-info-value" style="font-size:0.875rem;">
-                                <i data-lucide="car-front" style="width:14px; height:14px; margin-right:4px;"></i> Kostenfreie Parkplätze stehen an unserer Praxis (Schleifweg 3) zur Verfügung, zusätzlich gibt es Abstellmöglichkeiten für Fahrräder vor dem Gebäude.
+                                Kostenfreie Parkplätze stehen an unserer Praxis (Schleifweg 3) zur Verfügung, zusätzlich gibt es Abstellmöglichkeiten für Fahrräder vor dem Gebäude.
                             </div>
                         </div>
                     </div>
 
                     <div class="contact-info-item" style="border-bottom:none;">
-                        <div class="contact-icon-wrap"><i data-lucide="train"></i></div>
+                        <div class="contact-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        </div>
                         <div>
                             <div class="contact-info-label">Öffentliche Verkehrsmittel</div>
                             <div class="contact-info-value" style="font-size:0.875rem;">
-                                <div class="mb-1"><i data-lucide="bus" style="width:14px; height:14px; margin-right:4px;"></i> Bus 456: Haltestelle Prösen Zentrum (5 Min. zu Fuß)</div>
-                                <div><i data-lucide="train-track" style="width:14px; height:14px; margin-right:4px;"></i> Regionalbahn: Bahnhof Prösen (10 Min. zu Fuß)</div>
+                                <div class="mb-1">Bus 456: Haltestelle Prösen Zentrum (5 Min. zu Fuß)</div>
+                                <div>Regionalbahn: Bahnhof Prösen (10 Min. zu Fuß)</div>
                             </div>
                         </div>
                     </div>
@@ -262,42 +292,49 @@
             <div class="col-lg-7">
                 <div class="card-luxury p-4 p-md-5 h-100">
                     <h3 class="h4 mb-4" style="color: var(--c-navy-900);">Schreiben Sie uns</h3>
-                    <form action="{% url 'base:contact' %}" method="POST" id="contact-form">
+                    <form action="{% url 'base:contact' %}" method="POST" id="contact-form" novalidate>
                         {% csrf_token %}
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <div class="form-field">
-                                    <input type="text" name="vorname" class="form-control-premium" placeholder="Vorname *" required>
+                                    <label for="id_vorname" class="form-label-premium">Vorname <span aria-hidden="true">*</span><span class="visually-hidden">(Pflichtfeld)</span></label>
+                                    <input type="text" id="id_vorname" name="vorname" class="form-control-premium" placeholder="Vorname" required autocomplete="given-name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-field">
-                                    <input type="text" name="name" class="form-control-premium" placeholder="Nachname *" required>
+                                    <label for="id_name" class="form-label-premium">Nachname <span aria-hidden="true">*</span><span class="visually-hidden">(Pflichtfeld)</span></label>
+                                    <input type="text" id="id_name" name="name" class="form-control-premium" placeholder="Nachname" required autocomplete="family-name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-field">
-                                    <input type="email" name="email" class="form-control-premium" placeholder="E-Mail *" required>
+                                    <label for="id_email" class="form-label-premium">E-Mail <span aria-hidden="true">*</span><span class="visually-hidden">(Pflichtfeld)</span></label>
+                                    <input type="email" id="id_email" name="email" class="form-control-premium" placeholder="ihre@email.de" required autocomplete="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-field">
-                                    <input type="tel" name="telefon" class="form-control-premium" placeholder="Telefon (optional)">
+                                    <label for="id_telefon" class="form-label-premium">Telefon <span style="color:var(--text-muted); font-weight:400;">(optional)</span></label>
+                                    <input type="tel" id="id_telefon" name="telefon" class="form-control-premium" placeholder="03533 - XXXX" autocomplete="tel">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-field">
-                                    <input type="text" name="betreff" class="form-control-premium" placeholder="Betreff *" required>
+                                    <label for="id_betreff" class="form-label-premium">Betreff <span aria-hidden="true">*</span><span class="visually-hidden">(Pflichtfeld)</span></label>
+                                    <input type="text" id="id_betreff" name="betreff" class="form-control-premium" placeholder="Ihr Anliegen" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-field">
-                                    <textarea name="nachricht" class="form-control-premium" placeholder="Ihre Nachricht an uns *" required></textarea>
+                                    <label for="id_nachricht" class="form-label-premium">Ihre Nachricht <span aria-hidden="true">*</span><span class="visually-hidden">(Pflichtfeld)</span></label>
+                                    <textarea id="id_nachricht" name="nachricht" class="form-control-premium" placeholder="Schreiben Sie uns Ihr Anliegen..." required></textarea>
                                 </div>
                             </div>
                             <div class="col-12 mt-4 pt-2">
                                 <button type="submit" class="btn-primary-luxury w-100 justify-content-center">
-                                    Nachricht absenden <i data-lucide="send" style="width:16px;"></i>
+                                    Nachricht absenden
+                                    <svg aria-hidden="true" focusable="false" style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -315,40 +352,48 @@
             <div class="col-lg-6">
                 <div class="card-luxury p-4 p-md-5 h-100">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="contact-icon-wrap flex-shrink-0"><i data-lucide="door-open"></i></div>
+                        <div class="contact-icon-wrap flex-shrink-0" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
                         <div>
                             <div class="contact-info-label mb-0">Freie Annahme</div>
                             <div class="small mt-1" style="color:var(--text-muted);">Um telefonische Voranmeldung wird gebeten.</div>
                         </div>
                     </div>
+                    <dl>
                     {% for item in free_admissions %}
                     <div class="schedule-row" style="padding: 6px 0; border-bottom: 1px solid var(--border-subtle);">
-                        <span class="schedule-day" style="font-weight:600; width:110px; font-size:0.875rem;">{{ item.get_wochentag_display }}:</span>
-                        <span class="schedule-time" style="font-size:0.875rem;">{{ item.startzeit|time:"H:i" }} – {{ item.endzeit|time:"H:i" }} Uhr</span>
+                        <dt class="schedule-day" style="font-weight:600; width:110px; font-size:0.875rem;">{{ item.get_wochentag_display }}:</dt>
+                        <dd class="schedule-time" style="font-size:0.875rem; margin:0;">{{ item.startzeit|time:"H:i" }} – {{ item.endzeit|time:"H:i" }} Uhr</dd>
                     </div>
                     {% empty %}
-                    <div class="text-muted small">Aktuell keine gesonderten Zeiten.</div>
+                    <div class="small" style="color:var(--text-muted);">Aktuell keine gesonderten Zeiten.</div>
                     {% endfor %}
+                    </dl>
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="card-luxury p-4 p-md-5 h-100">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="contact-icon-wrap flex-shrink-0"><i data-lucide="clock"></i></div>
+                        <div class="contact-icon-wrap flex-shrink-0" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
                         <div class="contact-info-label mb-0">Sprechzeiten</div>
                     </div>
+                    <dl>
                     {% for time in consultation_times %}
                     <div class="schedule-row" style="padding: 6px 0; border-bottom: 1px solid var(--border-subtle);">
-                        <span class="schedule-day" style="width:110px; font-size:0.875rem;">{{ time.get_wochentag_display }}</span>
-                        <span class="schedule-time" style="font-size:0.875rem;">
+                        <dt class="schedule-day" style="width:110px; font-size:0.875rem; font-weight:600;">{{ time.get_wochentag_display }}</dt>
+                        <dd class="schedule-time" style="font-size:0.875rem; margin:0;">
                             {{ time.startzeit|time:"H:i" }} – {{ time.endzeit|time:"H:i" }} Uhr
-                            {% if time.nach_vereinbarung %}<span style="color:var(--c-teal-500); font-size:0.8rem;"> (n. Vereinb.)</span>{% endif %}
-                        </span>
+                            {% if time.nach_vereinbarung %}<span style="color:var(--c-teal-500); font-size:0.8rem;">(n. Vereinb.)</span>{% endif %}
+                        </dd>
                     </div>
                     {% empty %}
-                    <div class="text-muted small">Bitte erfragen Sie die Zeiten telefonisch.</div>
+                    <div class="small" style="color:var(--text-muted);">Bitte erfragen Sie die Zeiten telefonisch.</div>
                     {% endfor %}
+                    </dl>
                 </div>
             </div>
         </div>
@@ -359,12 +404,14 @@
             <div class="col-12">
                 <div class="card-luxury p-4" style="background: var(--c-cream-100, #fafaf8);">
                     <div class="d-flex align-items-center gap-3 flex-wrap">
-                        <div class="contact-icon-wrap flex-shrink-0" style="width:38px;height:38px;"><i data-lucide="calendar-x" style="width:18px;height:18px;"></i></div>
+                        <div class="contact-icon-wrap flex-shrink-0" style="width:38px;height:38px;" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="10" y1="15" x2="14" y2="15"/></svg>
+                        </div>
                         <span class="fw-semibold" style="color:var(--c-navy-900); font-size:0.9375rem; min-width:180px;">Praxisschließzeiten 2025</span>
                         <div class="d-flex flex-wrap gap-3">
                             {% for closure in practice_closures %}
                             <span class="badge" style="background:white; border:1.5px solid var(--border-subtle); color:var(--c-navy-900); font-weight:500; font-size:0.8125rem; padding:6px 14px; border-radius:20px;">
-                                {{ closure.start_datum|date:"d.m.Y" }} – {{ closure.end_datum|date:"d.m.Y" }}
+                                <time datetime="{{ closure.start_datum|date:'Y-m-d' }}">{{ closure.start_datum|date:"d.m.Y" }}</time> – <time datetime="{{ closure.end_datum|date:'Y-m-d' }}">{{ closure.end_datum|date:"d.m.Y" }}</time>
                             </span>
                             {% endfor %}
                         </div>
@@ -379,21 +426,23 @@
             <div class="col-12">
                 <div class="rounded-4 overflow-hidden shadow-sm border" style="border-color: var(--border-subtle); height: 320px; position: relative;">
                     <!-- Consent placeholder (shown when no consent) -->
-                    <div id="map-placeholder" class="h-100 w-100 d-flex align-items-center justify-content-center p-4 text-center" style="background: var(--c-cream-100, #f8f7f4); position:absolute; inset:0; z-index:2;">
+                    <div id="map-placeholder" class="h-100 w-100 d-flex align-items-center justify-content-center p-4 text-center" style="background: var(--c-cream-100, #f8f7f4); position:absolute; inset:0; z-index:2;" role="region" aria-label="Kartenbereich – Zustimmung erforderlich">
                         <div style="max-width:400px;">
-                            <div style="width:56px;height:56px;border-radius:14px;background:white;border:1.5px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
-                                <i data-lucide="map-pin" style="color:var(--c-teal-500);width:24px;height:24px;"></i>
+                            <div style="width:56px;height:56px;border-radius:14px;background:white;border:1.5px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--c-teal-500);width:24px;height:24px;" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
                             <p class="fw-semibold mb-1" style="color:var(--c-navy-900); font-size:0.9375rem;">Google Maps</p>
-                            <p class="text-muted small mb-4" style="line-height:1.6;">Um die interaktive Karte zu laden, stimmen Sie bitte der Übertragung von Daten an Google zu.</p>
-                            <button id="accept-map-btn" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--c-navy-900,#0d1b3e);color:#fff;border:none;border-radius:10px;font-weight:600;font-size:0.875rem;cursor:pointer;transition:background .2s;">
-                                <i data-lucide="map" style="width:16px;height:16px;"></i> Karte laden
+                            <p class="small mb-4" style="line-height:1.6; color:var(--text-muted);">Um die interaktive Karte zu laden, stimmen Sie bitte der Übertragung von Daten an Google zu.</p>
+                            <button id="accept-map-btn" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--c-navy-900,#0d1b3e);color:#fff;border:none;border-radius:10px;font-weight:600;font-size:0.875rem;cursor:pointer;transition:background .2s;" aria-label="Karte laden und Google Maps Daten akzeptieren">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                                Karte laden
                             </button>
                             <p class="mt-3 mb-0" style="font-size:0.75rem;color:var(--text-muted);">Ihre Auswahl wird gespeichert und kann jederzeit geändert werden.</p>
                         </div>
                     </div>
                     <!-- Map iframe (src set by JS only after consent) -->
                     <iframe id="map-iframe"
+                        title="Standort Hausarztpraxis Dipl. med. Hanaa Ahmad, Schleifweg 3, 04932 Prösen"
                         data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.6262757160957!2d13.490036476784283!3d51.42829147179537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a788b753db2eab%3A0xdcb442d82d0c5fdc!2sSchleifweg%203%2C%2004932%20R%C3%B6derland!5e0!3m2!1sen!2sde!4v1750296932830!5m2!1sen!2sde"
                         width="100%" height="100%" style="border:0; display:block; position:absolute; inset:0;"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -418,8 +467,12 @@
             galleryModal.addEventListener('show.bs.modal', function (event) {
                 var button = event.relatedTarget;
                 var imgSrc = button && button.getAttribute('data-img-src');
+                var imgAlt = button && button.getAttribute('data-img-alt');
                 var modalImg = galleryModal.querySelector('#modalImage');
-                if (modalImg && imgSrc) modalImg.src = imgSrc;
+                if (modalImg && imgSrc) {
+                    modalImg.src = imgSrc;
+                    modalImg.alt = imgAlt || '';
+                }
             });
         }
     }
@@ -471,13 +524,11 @@
             return;
         }
 
-        // Show placeholder, wire up the local "Karte laden" button
         if (placeholder) placeholder.style.display = 'flex';
 
         if (acceptBtn) {
             acceptBtn.addEventListener('click', function () {
                 saveMapConsent();
-                // Dismiss cookie modal too if it is still open
                 var cookieModal = document.getElementById('cookieModal');
                 if (cookieModal && cookieModal.classList.contains('show')) {
                     cookieModal.classList.remove('show');
@@ -487,7 +538,6 @@
             });
         }
 
-        // React when the user accepts via the cookie modal during this session
         window.addEventListener('globalConsentGiven', loadMap);
     }
 

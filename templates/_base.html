@@ -5,40 +5,105 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,450;14..32,500;14..32,550;14..32,600;14..32,700;14..32,750;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}">
-    <link rel="stylesheet" href="{% static 'css/clinic-minimal.css' %}">
-
-    {% block extra_head %}{% endblock extra_head %}
 
     <title>Dipl Med. Hanaa Ahmad – Hausarztpraxis Prösen</title>
     <meta name="description" content="Hausarztpraxis Dipl. med. Hanaa Ahmad in Prösen. Fachärztin für Innere Medizin – persönliche, kompetente Betreuung für Ihre Gesundheit.">
-    
+
     <!-- OpenGraph SEO -->
     <meta property="og:title" content="Dipl Med. Hanaa Ahmad – Hausarztpraxis">
     <meta property="og:description" content="Fachärztin für Innere Medizin in Prösen. Moderne Praxis mit persönlicher Betreuung.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.ha-praxis.com/">
-    <!-- Preload Hero Image -->
-    <link rel="preload" as="image" href="{% static 'images/slider-1.jpg' %}">
+    <meta property="og:image" content="https://www.ha-praxis.com{% static 'images/slider-1.jpg' %}">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
+    <meta property="og:locale" content="de_DE">
+
     <meta name="theme-color" content="#0d1b3e">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//code.jquery.com">
+
+    <!-- Preconnect for fonts (critical) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload LCP hero image (with high priority) -->
+    <link rel="preload" as="image" href="{% static 'images/slider-1.jpg' %}" fetchpriority="high">
+
+    <!-- Google Fonts: load non-blocking with font-display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,450;14..32,500;14..32,550;14..32,600;14..32,700;14..32,750;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,450;14..32,500;14..32,550;14..32,600;14..32,700;14..32,750;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Bootstrap CSS: non-blocking load -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"></noscript>
+
+    <!-- Animate.css: load async (non-blocking) -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{% static 'css/animate.css' %}"></noscript>
+
+    <!-- Main CSS: loaded synchronously (critical) -->
+    <link rel="stylesheet" href="{% static 'css/clinic-minimal.css' %}">
+
+    {% block extra_head %}{% endblock extra_head %}
+
+    <!-- JSON-LD: LocalBusiness Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "@id": "https://www.ha-praxis.com/#practice",
+      "name": "Hausarztpraxis Dipl. med. Hanaa Ahmad",
+      "description": "Fachärztin für Innere Medizin in Prösen. Persönliche, kompetente medizinische Versorgung für alle Patienten.",
+      "url": "https://www.ha-praxis.com",
+      "telephone": "+4935338217",
+      "faxNumber": "+493533819983",
+      "image": "https://www.ha-praxis.com{% static 'images/slider-1.jpg' %}",
+      "logo": "https://www.ha-praxis.com{% static 'images/logo.png' %}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Schleifweg 3",
+        "addressLocality": "Prösen",
+        "postalCode": "04932",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.4282914,
+        "longitude": 13.4900364
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      ],
+      "priceRange": "GKV / PKV",
+      "medicalSpecialty": "Internal Medicine"
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="skip-to-content">Zum Hauptinhalt springen</a>
+
     {% include "_preloader.html" %}
     {% include "_header.html" %}
 
-    {% block content %}{% endblock content %}
+    <main id="main-content">
+        {% block content %}{% endblock content %}
+    </main>
 
-    <!-- ── Cookie Consent Modal ─────────────────────────────────────────── -->
+    <!-- ── Cookie Consent Modal ───────────────────────────────────────────── -->
     <style>
     #cookieModal {
         position: fixed;
@@ -136,7 +201,7 @@
     <div id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
         <div class="cookie-card">
             <div class="cookie-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
                     <path d="M8.5 8.5v.01M12 12v.01M15.5 15.5v.01"/>
                 </svg>
@@ -150,7 +215,17 @@
         </div>
     </div>
 
+    <!-- Scripts: jQuery and Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="{% static 'js/wow.min.js' %}" defer></script>
+
+    {% block extra_scripts %}{% endblock extra_scripts %}
+
+    <script src="{% static 'js/main.js' %}" defer></script>
+
     <script>
+    // ── Cookie Consent ──────────────────────────────────────────────────────
     (function(){
         function setCookie(name, val, days){
             var d = new Date();
@@ -167,47 +242,28 @@
             m.classList.remove('show');
             setTimeout(function(){ m.style.display='none'; }, 320);
         }
-        var existing = localStorage.getItem('cookie_consent');
-        if(!existing){
-            var modal = document.getElementById('cookieModal');
-            modal.style.display = 'flex';
-            requestAnimationFrame(function(){
-                requestAnimationFrame(function(){ modal.classList.add('show'); });
+        document.addEventListener('DOMContentLoaded', function(){
+            var existing = localStorage.getItem('cookie_consent');
+            if(!existing){
+                var modal = document.getElementById('cookieModal');
+                modal.style.display = 'flex';
+                requestAnimationFrame(function(){
+                    requestAnimationFrame(function(){ modal.classList.add('show'); });
+                });
+            }
+            document.getElementById('cookieBtnAll').addEventListener('click', function(){
+                saveConsent('all');
+                closeModal();
+                window.dispatchEvent(new Event('globalConsentGiven'));
             });
-        }
-        document.getElementById('cookieBtnAll').addEventListener('click', function(){
-            saveConsent('all');
-            closeModal();
-            window.dispatchEvent(new Event('globalConsentGiven'));
-        });
-        document.getElementById('cookieBtnEssential').addEventListener('click', function(){
-            saveConsent('essential');
-            closeModal();
+            document.getElementById('cookieBtnEssential').addEventListener('click', function(){
+                saveConsent('essential');
+                closeModal();
+            });
         });
     })();
-    </script>
 
-    <!-- Scripts -->
-    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer src="{% static 'js/wow.min.js' %}"></script>
-    <script defer src="{% static 'js/tiny-slider.js' %}"></script>
-    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-    {% block extra_scripts %}{% endblock extra_scripts %}
-
-    <script defer src="{% static 'js/main.js' %}"></script>
-    <script>
-    // Init icons safely
-    document.addEventListener("DOMContentLoaded", function() {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        } else {
-            console.error("Lucide icons failed to load.");
-        }
-    });
-
-    // Sticky navbar
+    // ── Sticky navbar ───────────────────────────────────────────────────────
     (function(){
         var nav = document.querySelector('.clinic-nav');
         if(!nav) return;
@@ -222,31 +278,32 @@
         window.addEventListener('scroll', onScroll, {passive:true});
     })();
 
-    // Mobile nav toggle
+    // ── Mobile nav toggle ───────────────────────────────────────────────────
     (function(){
         var toggler = document.getElementById('navToggler');
         var links   = document.getElementById('navLinks');
         if(!toggler || !links) return;
         toggler.addEventListener('click', function(){
-            links.classList.toggle('open');
-            var icon = toggler.querySelector('[data-lucide]');
-            if(icon) {
-                var isOpen = links.classList.contains('open');
-                icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
-                lucide.createIcons();
-            }
+            var isOpen = links.classList.toggle('open');
+            toggler.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
         // Close on link click
         links.querySelectorAll('a').forEach(function(a){
             a.addEventListener('click', function(){
                 links.classList.remove('open');
-                var icon = toggler.querySelector('[data-lucide]');
-                if(icon){ icon.setAttribute('data-lucide','menu'); lucide.createIcons(); }
+                toggler.setAttribute('aria-expanded', 'false');
             });
         });
     })();
 
-    // Hide preloader
+    // ── WOW.js init ─────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function(){
+        if(typeof WOW !== 'undefined'){
+            new WOW({animateClass:'animate__animated', offset:60}).init();
+        }
+    });
+
+    // ── Hide preloader ──────────────────────────────────────────────────────
     window.addEventListener('load', function(){
         var pre = document.querySelector('.preloader');
         if(pre){ pre.style.opacity='0'; pre.style.visibility='hidden'; }
