@@ -23,6 +23,7 @@ The system uses Django templates for the frontend, SQLite3 as the default databa
 - `/datenschutz/`: Privacy policy page (via `base:datenschutz`).
 - `/neupatienten/`: Rules, warnings, and registration form download page (via `base:neupatienten`).
 - `/contact/`: POST endpoint for the contact form (via `base:contact`).
+- `/robots.txt` & `/sitemap.xml`: SEO files served directly from the root.
 Media URLs are routed under `/media/` when in DEBUG mode.
 
 # 5. Django Views & Business Logic
@@ -72,6 +73,7 @@ The project uses `python-dotenv` to load `.env`. Key variables include:
 - Standard Django middleware handles Security, Sessions, CSRF, and X-Frame-Options.
 - Password validators enforce minimum length, similarity checks, and complexity.
 - `WhiteNoiseMiddleware` is positioned right after `SecurityMiddleware` for optimal static file performance.
+- LCP preloading for main hero image and theme-color meta tag implemented for optimal Google PageSpeed Insights performance.
 
 # 15. Developer Cheat Sheet & Quick Commands
 - **Run Server**: `python manage.py runserver`

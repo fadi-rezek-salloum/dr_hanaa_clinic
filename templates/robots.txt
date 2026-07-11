@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://www.ha-praxis.com/sitemap.xml
