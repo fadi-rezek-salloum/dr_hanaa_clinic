@@ -54,7 +54,7 @@
                             <circle cx="60" cy="60" r="59" stroke="var(--c-teal-300)" stroke-width="2" stroke-dasharray="8 8"/>
                         </svg>
                     </div>
-                    <img src="{% static 'images/2.jpg' %}" alt="Behandlungsraum" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 600px;">
+                    <img src="{% static 'images/2.jpg' %}" alt="Behandlungsraum" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 600px;" width="800" height="600">
                     
                     <div class="position-absolute bottom-0 start-0 translate-middle-x ms-5 mb-5 bg-white p-4 rounded-4 shadow-lg d-none d-md-block" style="max-width: 280px;">
                         <div class="d-flex align-items-center gap-3 mb-2">
@@ -133,7 +133,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="team-card h-100 text-center">
                     <div class="team-card-img-wrap">
-                        <img src="{% if member.picture %}{{ member.picture.url }}{% else %}{% static 'images/doctor.png' %}{% endif %}" alt="{{ member.name }}" loading="lazy">
+                        <img src="{% if member.picture %}{{ member.picture.url }}{% else %}{% static 'images/doctor.png' %}{% endif %}" alt="{{ member.name }}" loading="lazy" width="400" height="400">
                     </div>
                     <div class="team-card-body">
                         <h3 class="team-card-name">{{ member.title|default:'' }} {{ member.name }}</h3>
@@ -168,7 +168,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/0.jpg' %}">
                     <div class="gallery-img-wrapper">
-                        <img src="{% static 'images/0.jpg' %}" alt="Empfang" loading="lazy">
+                        <img src="{% static 'images/0.jpg' %}" alt="Empfang" loading="lazy" width="800" height="600">
                     </div>
                     <div class="gallery-overlay">
                         <div class="gallery-icon-wrap"><i data-lucide="maximize-2"></i></div>
@@ -179,7 +179,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/1.jpg' %}">
                     <div class="gallery-img-wrapper">
-                        <img src="{% static 'images/1.jpg' %}" alt="Wartezimmer" loading="lazy">
+                        <img src="{% static 'images/1.jpg' %}" alt="Wartezimmer" loading="lazy" width="800" height="600">
                     </div>
                     <div class="gallery-overlay">
                         <div class="gallery-icon-wrap"><i data-lucide="maximize-2"></i></div>
@@ -190,7 +190,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="{% static 'images/2.jpg' %}">
                     <div class="gallery-img-wrapper">
-                        <img src="{% static 'images/2.jpg' %}" alt="Sprechzimmer" loading="lazy">
+                        <img src="{% static 'images/2.jpg' %}" alt="Sprechzimmer" loading="lazy" width="800" height="600">
                     </div>
                     <div class="gallery-overlay">
                         <div class="gallery-icon-wrap"><i data-lucide="maximize-2"></i></div>
