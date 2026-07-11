@@ -1,54 +1,50 @@
 {% load static %}
-
-<!--========================= footer-section start ========================= -->
-<footer id="footer" class="footer-section pt-50 pb-50" aria-labelledby="footer-title">
-    <div class="shape shape-3">
-        <img src="{% static 'images/shape-3.svg' %}" alt="Hintergrundform" loading="lazy" aria-hidden="true">
-    </div>
+<footer class="site-footer">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="footer-info wow fadeInUp" data-wow-delay=".2s">
-                    <h4 id="footer-title">Kontaktinformationen</h4>
-                    <ul class="list-unstyled">
-                        <li><i class="fa-solid fa-map-location-dot"></i> Schleifweg 3, 04932 Prösen</li>
-                        <li><i class="fa-solid fa-phone"></i> <a href="tel:+4935338217">+49 3533-8217</a></li>
-                        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@praxis.de">info@praxis.de</a></li>
-                        <li><i class="fa-solid fa-globe"></i> <a href="https://www.ha-praxis.com" target="_blank">www.ha-praxis.com</a></li>
-                    </ul>
-                    
+        <div class="row g-4 g-lg-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-brand-name">Dipl. med. Hanaa Ahmad</div>
+                <p style="font-size: 0.9375rem; line-height: 1.6; margin-bottom: 24px;">Fachärztin für Innere Medizin. Verlässliche und persönliche Betreuung in Prösen.</p>
+                <div class="d-flex align-items-start gap-3 mb-3">
+                    <div class="footer-contact-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></div>
+                    <div class="footer-contact-text mt-1">Schleifweg 3<br>04932 Prösen</div>
+                </div>
+                <div class="d-flex align-items-start gap-3 mb-3">
+                    <div class="footer-contact-icon"><i data-lucide="phone" style="width:16px;height:16px;"></i></div>
+                    <div class="footer-contact-text mt-1"><a href="tel:+4935338217">03533 - 8217</a></div>
+                </div>
+                <div class="d-flex align-items-start gap-3 mb-3">
+                    <div class="footer-contact-icon"><i data-lucide="printer" style="width:16px;height:16px;"></i></div>
+                    <div class="footer-contact-text mt-1">03533 - 819983 (Fax)</div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="footer-social wow fadeInUp" data-wow-delay=".4s">
-                    <h4>Schnelllinks</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="{% url 'base:index' %}#about">Über Uns</a></li>
-                        <li><a href="{% url 'base:index' %}#services">Leistungen</a></li>
-                        <li><a href="{% url 'base:index' %}#gallery">Praxisrundgang</a></li>
-                        <li><a href="{% url 'base:index' %}#anfahrt">Anfahrt</a></li>
-                        <li><a href="{% url 'base:index' %}#contact">Kontakt</a></li>
-                    </ul>
-                    <a href="#top" class="back-to-top btn btn-teal mt-5 wow fadeInUp" data-wow-delay=".6s" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Zurück nach oben <i class="fa-solid fa-arrow-up"></i></a>
-                </div>  
+
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-col-title">Schnelllinks</div>
+                <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#about" class="footer-link">Über Uns</a>
+                <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#services" class="footer-link">Leistungen</a>
+                <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#team" class="footer-link">Team</a>
+                <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#gallery" class="footer-link">Praxisrundgang</a>
+                <a href="{% if request.resolver_match.url_name != 'index' %}{% url 'base:index' %}{% endif %}#contact" class="footer-link">Kontakt & Anfahrt</a>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="footer-col-title">Patienten & Rechtliches</div>
+                <a href="{% url 'base:neupatienten' %}" class="footer-link d-inline-flex align-items-center gap-2">
+                    Neupatienten <span class="badge-teal" style="font-size: 0.65rem; padding: 2px 8px;">Info</span>
+                </a>
+                <a href="{% url 'base:impressum' %}" class="footer-link mt-2">Impressum</a>
+                <a href="{% url 'base:datenschutz' %}" class="footer-link">Datenschutz</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 mt-3">
-                <div class="d-flex">
-                    <a href="{% url "base:impressum" %}" target="_blank" class="text-decoration-none me-3">Impressum</a>|
-                    <a href="{% url "base:datenschutz" %}" target="_blank" class="text-decoration-none mx-3">Datenschutz</a>|
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-center mt-4">
-                <p class="text-white mb-0">&copy; 2026 Praxis Dipl. med. Hanaa Ahmad. Alle Rechte vorbehalten.</p>
-                <p class="small mt-2 mb-0 dev-credit">
-                    Entwickelt von <a href="mailto:fadirezeksalloum.dev@gmail.com" class="text-teal text-decoration-none fw-bold">&nbsp;Eng. Fadi Rezek Salloum</a>
-                </p>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div>&copy; {% now "Y" %} Praxis Dipl. med. Hanaa Ahmad. Alle Rechte vorbehalten.</div>
+            <div class="footer-dev-credit">
+                Entwickelt von <a href="mailto:fadirezeksalloum.dev@gmail.com">Eng. Fadi Rezek Salloum</a>
             </div>
         </div>
     </div>
 </footer>
-<!--========================= footer-section end ========================= -->

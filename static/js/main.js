@@ -45,22 +45,7 @@
 		}
 	};
 
-	// Initialize Tiny Slider if available
-	if (typeof tns === "function") {
-		tns({
-			container: ".slider-active",
-			items: 1,
-			slideBy: "page",
-			autoplay: true,
-			mouseDrag: true,
-			gutter: 0,
-			nav: true,
-			controls: false,
-			autoplayButtonOutput: false,
-		});
-	} else {
-		console.warn("Tiny Slider is not available");
-	}
+
 
 	// Smooth Scroll
 	const pageLinks = document.querySelectorAll(".page-scroll");

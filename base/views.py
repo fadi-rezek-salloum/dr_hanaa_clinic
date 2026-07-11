@@ -38,10 +38,21 @@ class NeupatientenView(TemplateView):
     template_name = "base/neupatienten.html"
 
 
-class ContactView(FormView):
+class ContactView(IndexView, FormView):
     template_name = "base/index.html"
     form_class = ContactForm
     success_url = reverse_lazy("base:index")
+
+    def get_context_data(self, **kwargs):
+        # Merge IndexView context (staff, schedules…) with FormView context (form)
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            return self.form_valid(form)
+        return self.form_invalid(form)
 
     def form_valid(self, form):
         contact = form.save()

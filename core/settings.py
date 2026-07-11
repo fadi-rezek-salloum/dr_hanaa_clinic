@@ -115,11 +115,110 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Dipl Med. Hanaa Ahmad",
-    "site_header": "Willkommen Dipl Med. Hanaa Ahmad",
-    "welcome_sign": "Willkommen Dipl Med. Hanaa Ahmad",
-    "site_brand": "Admin",
+    # ── Branding ──────────────────────────────────────────────────────────────
+    "site_title": "Praxis Hanaa Ahmad",
+    "site_header": "Praxisverwaltung",
+    "site_brand": "Dipl. med. Hanaa Ahmad",
+    "welcome_sign": "Willkommen im Praxis-Verwaltungssystem",
     "site_logo": "images/favicon.ico",
+    "site_logo_classes": "img-circle",
+    "site_icon": "images/favicon.ico",
+    "copyright": "Dipl. med. Hanaa Ahmad — Hausarztpraxis Prösen",
+
+    # ── Navbar / Top-right links ──────────────────────────────────────────────
+    "topmenu_links": [
+        {"name": "🏠 Zur Website", "url": "/", "new_window": True},
+        {"name": "📋 Neue Anfragen", "model": "base.contact"},
+    ],
+
+    # ── User menu ─────────────────────────────────────────────────────────────
+    "usermenu_links": [
+        {"name": "🌐 Praxis-Website", "url": "https://www.ha-praxis.com", "new_window": True},
+    ],
+
+    # ── Sidebar navigation ────────────────────────────────────────────────────
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+
+    # Order apps in the sidebar
+    "order_with_respect_to": [
+        "base",
+        "timing",
+        "staff",
+        "auth",
+    ],
+
+    # Icons per model (Font Awesome)
+    "icons": {
+        "auth":                       "fas fa-users-cog",
+        "auth.user":                  "fas fa-user",
+        "auth.group":                 "fas fa-users",
+        "base.contact":               "fas fa-envelope-open-text",
+        "staff.staff":                "fas fa-user-md",
+        "timing.consultationtime":    "fas fa-clock",
+        "timing.freeadmission":       "fas fa-door-open",
+        "timing.practiceclosure":     "fas fa-calendar-times",
+    },
+    "default_icon_parents": "fas fa-folder",
+    "default_icon_children": "fas fa-circle",
+
+    # Custom links in the sidebar (below models)
+    "custom_links": {
+        "base": [
+            {
+                "name": "Website öffnen",
+                "url": "/",
+                "icon": "fas fa-external-link-alt",
+                "new_window": True,
+            },
+        ],
+    },
+
+    # ── UI Tweaks ─────────────────────────────────────────────────────────────
+    "show_ui_builder": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+
+    # ── Search bar ────────────────────────────────────────────────────────────
+    "search_model": ["base.contact", "staff.staff"],
+    "related_modal_active": True,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": True,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-teal",
+    "navbar": "navbar-dark",
+    "no_navbar_border": True,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-teal",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "default",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -142,9 +241,17 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 if not DEBUG:
+    # SSL Redirect
     SECURE_SSL_REDIRECT = True
+    
+    # Secure Cookies
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    
+    # HTTP Strict Transport Security (HSTS)
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 STORAGES = {
     "default": {

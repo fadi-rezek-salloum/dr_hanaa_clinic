@@ -1,316 +1,204 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block extra_head %}
-<style>
-    .neupatienten-section {
-        background-color: #fcfcfc;
-        position: relative;
-    }
-    
-    .info-card {
-        background: #ffffff;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-        border: 1px solid rgba(0, 0, 0, 0.03);
-        padding: 40px;
-        margin-bottom: 40px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .info-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-    }
-    
-    .card-icon-wrapper {
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-        background-color: rgba(0, 173, 181, 0.1);
-        color: #00adb5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        margin-bottom: 25px;
-    }
-    
-    .card-title {
-        font-weight: 700;
-        color: #3a424e;
-        margin-bottom: 20px;
-        font-size: 1.6rem;
-        border-bottom: 2px solid #f0f0f0;
-        padding-bottom: 15px;
-    }
-    
-    .rule-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 20px;
-    }
-    
-    .rule-item-icon {
-        color: #00adb5;
-        margin-right: 15px;
-        margin-top: 5px;
-        font-size: 1.1rem;
-    }
-    
-    .rule-item-content h5 {
-        font-weight: 600;
-        color: #3a424e;
-        margin-bottom: 5px;
-        font-size: 1.1rem;
-    }
-    
-    .rule-item-content p {
-        color: #6c757d;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
-    
-    .highlight-box {
-        background-color: rgba(255, 193, 7, 0.08);
-        border-left: 4px solid #ffc107;
-        border-radius: 8px;
-        padding: 20px;
-        margin-top: 25px;
-    }
-    
-    .highlight-box p {
-        color: #664d03;
-        font-size: 0.95rem;
-        margin-bottom: 0;
-        line-height: 1.6;
-    }
-    
-    .download-section {
-        background: linear-gradient(135deg, #3a424e, #2b3039);
-        border-radius: 20px;
-        padding: 50px 40px;
-        color: #ffffff;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    }
-    
-    .download-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(0, 173, 181, 0.15) 0%, transparent 60%);
-        pointer-events: none;
-    }
-    
-    .download-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #ffffff !important;
-    }
-    
-    .download-subtitle {
-        color: #e2e8f0 !important;
-        max-width: 600px;
-        margin: 0 auto 30px auto;
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-    
-    .download-btn {
-        background-color: #00adb5;
-        color: #ffffff;
-        border: none;
-        padding: 15px 35px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        box-shadow: 0 4px 15px rgba(0, 173, 181, 0.4);
-    }
-    
-    .download-btn:hover {
-        background-color: #00989e;
-        color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 173, 181, 0.6);
-    }
-
-    .badge-legal {
-        display: inline-block;
-        background-color: #dc3545;
-        color: #ffffff;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        padding: 5px 10px;
-        border-radius: 4px;
-        margin-bottom: 15px;
-        letter-spacing: 1px;
-    }
-
-    .specialist-box {
-        background-color: rgba(0, 173, 181, 0.05);
-        border-left: 4px solid #00adb5;
-        border-radius: 8px;
-        padding: 20px;
-        margin-top: 25px;
-    }
-
-    .specialist-box p {
-        color: #008187;
-        font-size: 0.95rem;
-        margin-bottom: 0;
-        line-height: 1.6;
-    }
-</style>
-{% endblock extra_head %}
-
 {% block content %}
-<section class="neupatienten-section pt-150 pb-120">
-    <div class="shape shape-2">
-        <img src="{% static 'images/shape-2.svg' %}" alt="Shape 2">
-    </div>
-    <div class="container">
-        <!-- Section Title -->
+<section class="page-hero">
+    <div class="container position-relative z-1">
         <div class="row">
-            <div class="col-xl-8 mx-auto">
-                <div class="section-title text-center mb-55">
-                    <span class="wow fadeInDown" data-wow-delay=".2s">Wichtige Praxisinformationen</span>
-                    <h2 class="mb-15 wow fadeInUp" data-wow-delay=".4s">Informationen für Neupatienten</h2>
-                    <p class="wow fadeInUp" data-wow-delay=".6s">
-                        Herzlich willkommen in unserer Praxis! Um einen reibungslosen Ablauf zu gewährleisten und Wartezeiten zu minimieren, bitten wir Sie, die folgenden rechtlichen und organisatorischen Regelungen aufmerksam zu lesen.
-                    </p>
-                </div>
+            <div class="col-lg-8">
+                <span class="page-hero-label">Informationen</span>
+                <h1 class="page-hero-title">Neupatienten</h1>
+                <p class="page-hero-subtitle">Wir freuen uns, Sie in unserer Praxis begrüßen zu dürfen. Hier finden Sie alle wichtigen Informationen für Ihren ersten Besuch.</p>
             </div>
         </div>
-
-        <div class="row">
-            <!-- Left Column: Termine & Absagen -->
-            <div class="col-lg-6 d-flex">
-                <div class="info-card flex-fill wow fadeInLeft" data-wow-delay=".2s">
-                    <div class="card-icon-wrapper">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <span class="badge-legal">Rechtlich bindend</span>
-                    <h3 class="card-title">Regelung zur Terminabsage</h3>
-                    <p class="text-muted mb-4">
-                        Unsere Praxis wird als <strong>Bestellpraxis</strong> geführt. Die vereinbarte Zeit ist ausschließlich für Sie reserviert, was uns ermöglicht, Ihre Wartezeiten so kurz wie möglich zu halten.
-                    </p>
-
-                    <!-- Rule Items -->
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-clock"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Absagefrist (mind. 24h)</h5>
-                            <p>Sollten Sie einen Termin nicht wahrnehmen können, sagen Sie diesen bitte mindestens 24 Stunden vorher ab (telefonisch, per E-Mail oder über unser Kontaktformular).</p>
-                        </div>
-                    </div>
-
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-euro-sign"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Ausfallhonorar</h5>
-                            <p>Wird ein Termin nicht rechtzeitig oder gar nicht abgesagt, behalten wir uns das Recht vor, ein Ausfallhonorar in Höhe von <strong>20,00 €</strong> gemäß § 615 BGB privat in Rechnung zu stellen.</p>
-                        </div>
-                    </div>
-
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-shield-heart"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Ausnahmen</h5>
-                            <p>Ein Ausfallhonorar wird selbstverständlich nicht fällig bei unverschuldeten Gründen (z. B. plötzliche akute Erkrankung, Unfall).</p>
-                        </div>
-                    </div>
-
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Keine Kassenleistung</h5>
-                            <p>Gesetzliche Krankenkassen übernehmen diese Gebühr nicht. Die Rechnung ist von Ihnen privat zu begleichen.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column: Intim- und geschlechtsspezifische Beschwerden -->
-            <div class="col-lg-6 d-flex">
-                <div class="info-card flex-fill wow fadeInRight" data-wow-delay=".4s">
-                    <div class="card-icon-wrapper">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <span class="badge-legal" style="background-color: #00adb5;">Zuständigkeitsregelung</span>
-                    <h3 class="card-title">Geschlechtsspezifische Beschwerden</h3>
-                    <p class="text-muted mb-4">
-                        In unserer hausärztlichen Praxis behandeln wir allgemeinmedizinische Erkrankungen im Rahmen der hausärztlichen Grundversorgung.
-                    </p>
-
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-venus"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Gynäkologische Beschwerden</h5>
-                            <p>Gynäkologische Beschwerden bei Frauen gehören in der Regel nicht zu unserem Behandlungsspektrum. Wir überweisen Sie zur fachärztlichen Abklärung an eine Gynäkologin / einen Gynäkologen.</p>
-                        </div>
-                    </div>
-
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-mars"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Urologische Beschwerden</h5>
-                            <p>Urologische bzw. genitale Beschwerden bei Männern gehören in der Regel nicht zu unserem Behandlungsspektrum. Wir überweisen Sie zur Abklärung an eine Urologin / einen Urologen.</p>
-                        </div>
-                    </div>
-
-                    <div class="rule-item">
-                        <div class="rule-item-icon"><i class="fa-solid fa-kit-medical"></i></div>
-                        <div class="rule-item-content">
-                            <h5>Medizinische Notfälle</h5>
-                            <p>In medizinischen Akutsituationen und Notfällen erfolgt selbstverständlich immer eine sofortige medizinische Erstversorgung vor Ort.</p>
-                        </div>
-                    </div>
-
-                    <div class="specialist-box">
-                        <p>
-                            <i class="fa-solid fa-circle-info"></i> Wir danken Ihnen für Ihr Verständnis, dass wir zur Sicherung der Behandlungsqualität konsequent an die entsprechenden Fachärzte überweisen.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Download Intake Form Section -->
-        <div class="row mt-4">
-            <div class="col-lg-12">
-                <div class="download-section wow fadeInUp" data-wow-delay=".2s">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8 text-lg-start text-center mb-4 mb-lg-0">
-                            <h3 class="download-title"><i class="fas fa-file-signature me-2" style="color: #00adb5;"></i> Aufnahmeformular zum Ausdrucken</h3>
-                            <p class="download-subtitle mb-0">
-                                Sparen Sie Zeit bei Ihrer Anmeldung! Laden Sie unser Aufnahmeformular vorab herunter, drucken Sie es aus, füllen Sie es bequem zu Hause aus und bringen Sie es ausgefüllt zu Ihrem Termin mit.
-                            </p>
-                        </div>
-                        <div class="col-lg-4 text-center text-lg-end">
-                            <a href="{% static 'documents/aufnahmeformular.pdf' %}" class="download-btn" download="Aufnahmeformular_Dr_Hanaa_Clinic.pdf">
-                                <i class="fa-solid fa-file-pdf"></i> PDF Herunterladen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </section>
 
-{% include "_footer.html" %}
-{% endblock content %}
+<section class="section-padding bg-white">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                
+                <h2 class="h3 mb-4" style="color: var(--c-navy-900);">Hinweise für Ihren ersten Termin</h2>
+                <div class="section-body mb-5">
+                    <p>Damit wir uns bei Ihrem ersten Besuch ausreichend Zeit für Sie nehmen können und alle notwendigen Unterlagen vorliegen, bitten wir Sie, einige Dinge zu beachten:</p>
+                    
+                    <ul class="list-unstyled mt-4 d-flex flex-column gap-3">
+                        <li class="d-flex align-items-start gap-3">
+                            <div class="mt-1"><i data-lucide="check-circle" style="color: var(--c-teal-500); width: 20px;"></i></div>
+                            <div>
+                                <strong class="d-block text-navy-900 mb-1" style="color: var(--c-navy-900);">Chipkarte (Gesundheitskarte)</strong>
+                                <span class="text-muted">Bitte bringen Sie Ihre gültige Krankenversichertenkarte mit.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3">
+                            <div class="mt-1"><i data-lucide="check-circle" style="color: var(--c-teal-500); width: 20px;"></i></div>
+                            <div>
+                                <strong class="d-block text-navy-900 mb-1" style="color: var(--c-navy-900);">Medikamentenplan</strong>
+                                <span class="text-muted">Einen aktuellen bundeseinheitlichen Medikationsplan (BMP) oder eine Liste Ihrer aktuellen Medikamente.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3">
+                            <div class="mt-1"><i data-lucide="check-circle" style="color: var(--c-teal-500); width: 20px;"></i></div>
+                            <div>
+                                <strong class="d-block text-navy-900 mb-1" style="color: var(--c-navy-900);">Vorbehandlungsunterlagen</strong>
+                                <span class="text-muted">Relevante Arztbriefe, Krankenhausberichte oder Laborbefunde, falls vorhanden.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3">
+                            <div class="mt-1"><i data-lucide="check-circle" style="color: var(--c-teal-500); width: 20px;"></i></div>
+                            <div>
+                                <strong class="d-block text-navy-900 mb-1" style="color: var(--c-navy-900);">Impfpass & Allergiepass</strong>
+                                <span class="text-muted">Zur Überprüfung Ihres Impfstatus und zur Erfassung von Allergien.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="callout-teal mb-5">
+                    <p><strong>Hinweis zur Terminvergabe:</strong><br>
+                    Wir nehmen derzeit nur begrenzt neue Patienten auf. Bitte klären Sie vorab telefonisch, ob wir Kapazitäten für eine Neuaufnahme haben. Vielen Dank für Ihr Verständnis.</p>
+                </div>
+
+                <h2 class="h3 mb-4" style="color: var(--c-navy-900);">Anmeldeformular</h2>
+                <div class="section-body">
+                    <p>Um die Anmeldung in der Praxis zu beschleunigen, können Sie unseren Anamnesebogen bereits bequem zu Hause ausdrucken und ausgefüllt mitbringen.</p>
+                    
+                    <div class="mt-4">
+                        <a href="{% static 'docs/Anmeldeformular.pdf' %}" target="_blank" class="btn-navy">
+                            <i data-lucide="download" style="width: 18px;"></i>
+                            Anamnesebogen herunterladen (PDF)
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-5">
+                    <div class="col-md-6">
+                        <div class="card-luxury p-4 h-100">
+                            <div class="d-flex align-items-center mb-3 gap-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--c-teal-100); color: var(--c-teal-500);">
+                                    <i data-lucide="calendar"></i>
+                                </div>
+                            </div>
+                            <span class="badge bg-danger text-white px-2 py-1 mb-3" style="font-size:0.75rem; letter-spacing:0.05em;">RECHTLICH BINDEND</span>
+                            <h3 class="h5 mb-4" style="color: var(--c-navy-900);">Regelung zur Terminabsage</h3>
+                            <p class="text-muted small mb-4">Unsere Praxis wird als <strong>Bestellpraxis</strong> geführt. Die vereinbarte Zeit ist ausschließlich für Sie reserviert, was uns ermöglicht, Ihre Wartezeiten so kurz wie möglich zu halten.</p>
+                            
+                            <ul class="list-unstyled d-flex flex-column gap-3">
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="clock" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Absagefrist (mind. 24h)</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">Sollten Sie einen Termin nicht wahrnehmen können, sagen Sie diesen bitte mindestens 24 Stunden vorher ab (telefonisch, per E-Mail oder über unser Kontaktformular).</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="euro" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Ausfallhonorar</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">Wird ein Termin nicht rechtzeitig oder gar nicht abgesagt, behalten wir uns das Recht vor, ein Ausfallhonorar in Höhe von <strong>20,00 €</strong> gemäß § 615 BGB privat in Rechnung zu stellen.</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="shield" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Ausnahmen</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">Ein Ausfallhonorar wird selbstverständlich nicht fällig bei unverschuldeten Gründen (z. B. plötzliche akute Erkrankung, Unfall).</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="alert-triangle" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Keine Kassenleistung</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">Gesetzliche Krankenkassen übernehmen diese Gebühr nicht. Die Rechnung ist von Ihnen privat zu begleichen.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-luxury p-4 h-100">
+                            <div class="d-flex align-items-center mb-3 gap-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--c-teal-100); color: var(--c-teal-500);">
+                                    <i data-lucide="stethoscope"></i>
+                                </div>
+                            </div>
+                            <span class="badge px-2 py-1 mb-3 text-white" style="background:var(--c-teal-500); font-size:0.75rem; letter-spacing:0.05em;">ZUSTÄNDIGKEITSREGELUNG</span>
+                            <h3 class="h5 mb-4" style="color: var(--c-navy-900);">Geschlechtsspezifische Beschwerden</h3>
+                            <p class="text-muted small mb-4">In unserer hausärztlichen Praxis behandeln wir allgemeinmedizinische Erkrankungen im Rahmen der hausärztlichen Grundversorgung.</p>
+                            
+                            <ul class="list-unstyled d-flex flex-column gap-3">
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="circle-dashed" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Gynäkologische Beschwerden</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">Gynäkologische Beschwerden bei Frauen gehören in der Regel nicht zu unserem Behandlungsspektrum. Wir überweisen Sie zur fachärztlichen Abklärung an eine Gynäkologin / einen Gynäkologen.</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="activity" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Urologische Beschwerden</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">Urologische bzw. genitale Beschwerden bei Männern gehören in der Regel nicht zu unserem Behandlungsspektrum. Wir überweisen Sie zur Abklärung an eine Urologin / einen Urologen.</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="mt-1"><i data-lucide="plus-square" style="color: var(--c-teal-500); width: 18px;"></i></div>
+                                    <div>
+                                        <strong class="d-block mb-1" style="color: var(--c-navy-900); font-size:0.9rem;">Medizinische Notfälle</strong>
+                                        <span class="text-muted" style="font-size:0.85rem;">In medizinischen Akutsituationen und Notfällen erfolgt selbstverständlich immer eine sofortige medizinische Erstversorgung vor Ort.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="callout-teal mt-4" style="padding: 1rem;">
+                                <div class="d-flex gap-2">
+                                    <i data-lucide="info" style="color: var(--c-teal-500); width:20px; flex-shrink:0;"></i>
+                                    <span style="font-size:0.85rem; color:var(--c-teal-500);">Wir danken Ihnen für Ihr Verständnis, dass wir zur Sicherung der Behandlungsqualität konsequent an die entsprechenden Fachärzte überweisen.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card-luxury p-4 sticky-top" style="top: 100px;">
+                    <h3 class="h5 mb-4" style="color: var(--c-navy-900);">Kontakt</h3>
+                    
+                    <div class="info-block" style="padding-top: 0;">
+                        <div class="info-icon"><i data-lucide="phone"></i></div>
+                        <div>
+                            <div class="info-label">Telefon</div>
+                            <div class="info-value"><a href="tel:+4935338217" class="text-decoration-none" style="color: var(--c-navy-900);">03533 - 8217</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-block">
+                        <div class="info-icon"><i data-lucide="mail"></i></div>
+                        <div>
+                            <div class="info-label">E-Mail</div>
+                            <div class="info-value"><a href="mailto:ha.praxis1@gmail.com" class="text-decoration-none" style="color: var(--c-navy-900);">ha.praxis1@gmail.com</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-block" style="border-bottom: none; padding-bottom: 0;">
+                        <div class="info-icon"><i data-lucide="map-pin"></i></div>
+                        <div>
+                            <div class="info-label">Adresse</div>
+                            <div class="info-value">Schleifweg 3<br>04932 Prösen</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 text-center border-top" style="border-color: var(--c-cream-200) !important;">
+                        <a href="{% url 'base:index' %}" class="btn-ghost-light text-navy-900 w-100 justify-content-center" style="color: var(--c-navy-900); border-color: var(--c-cream-200);">
+                            Zur Startseite
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

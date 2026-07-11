@@ -1,136 +1,156 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Datenschutzerklärung – ha-Praxis.com</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+{% extends "_base.html" %}
 
-<div class="container my-5">
-  <h1 class="mb-4">Datenschutzerklärung</h1>
-  <p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Nachfolgend informieren wir Sie gemäß Art. 13 DSGVO über die Verarbeitung Ihrer Daten auf dieser Website.</p>
-
-  <div class="accordion" id="datenschutzAccordion">
-
-    <!-- 1. Verantwortliche Stelle -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          1. Verantwortliche Stelle
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Dipl. med. Hanaa Ahmad<br>
-          ha-Praxis.com<br>
-          Kontaktdaten siehe <a href="{% url "base:impressum" %}">Impressum</a>.
+{% block content %}
+<section class="page-hero">
+    <div class="container position-relative z-1">
+        <div class="row">
+            <div class="col-lg-8">
+                <span class="page-hero-label">Rechtliches</span>
+                <h1 class="page-hero-title">Datenschutz</h1>
+                <p class="page-hero-subtitle">Erklärung zum Schutz Ihrer persönlichen Daten</p>
+            </div>
         </div>
-      </div>
     </div>
+</section>
 
-    <!-- 2. Erhebung und Verarbeitung personenbezogener Daten -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          2. Erhebung und Verarbeitung personenbezogener Daten
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Sofern personenbezogene Daten erhoben werden (z. B. über das Kontaktformular), erfolgt dies stets freiwillig und gemäß Art. 6 Abs. 1 lit. b DSGVO zur Bearbeitung Ihrer Anfrage.
+<section class="section-padding bg-white">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                
+                <div class="accordion accordion-luxury" id="datenschutzAccordion">
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1. Datenschutz auf einen Blick
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#datenschutzAccordion">
+                            <div class="accordion-body">
+                                <h3 class="h6 fw-bold mb-2 text-navy-900" style="color: var(--c-navy-900);">Allgemeine Hinweise</h3>
+                                <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
+                                
+                                <h3 class="h6 fw-bold mb-2 mt-4 text-navy-900" style="color: var(--c-navy-900);">Datenerfassung auf dieser Website</h3>
+                                <p class="mb-1"><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
+                                <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.</p>
+                                
+                                <p class="mb-1 mt-3"><strong>Wie erfassen wir Ihre Daten?</strong></p>
+                                <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+                                
+                                <p class="mb-1 mt-3"><strong>Wofür nutzen wir Ihre Daten?</strong></p>
+                                <p>Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.</p>
+                                
+                                <p class="mb-1 mt-3"><strong>Welche Rechte haben Sie bezüglich Ihrer Daten?</strong></p>
+                                <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die Zukunft widerrufen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2. Hosting
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#datenschutzAccordion">
+                            <div class="accordion-body">
+                                <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
+                                <h3 class="h6 fw-bold mb-2 mt-3 text-navy-900" style="color: var(--c-navy-900);">Externes Hosting</h3>
+                                <p>Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
+                                <p>Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3. Allgemeine Hinweise und Pflichtinformationen
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#datenschutzAccordion">
+                            <div class="accordion-body">
+                                <h3 class="h6 fw-bold mb-2 text-navy-900" style="color: var(--c-navy-900);">Datenschutz</h3>
+                                <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+                                <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+                                
+                                <h3 class="h6 fw-bold mb-2 mt-4 text-navy-900" style="color: var(--c-navy-900);">Hinweis zur verantwortlichen Stelle</h3>
+                                <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+                                <p class="bg-subtle p-3 rounded-3 mt-2" style="background: var(--c-cream-100);">
+                                    Dipl. med. Hanaa Ahmad<br>
+                                    Schleifweg 3<br>
+                                    04932 Prösen<br>
+                                    Telefon: 03533 - 8217<br>
+                                    E-Mail: ha.praxis1@gmail.com
+                                </p>
+                                
+                                <h3 class="h6 fw-bold mb-2 mt-4 text-navy-900" style="color: var(--c-navy-900);">SSL- bzw. TLS-Verschlüsselung</h3>
+                                <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                4. Datenerfassung auf dieser Website
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#datenschutzAccordion">
+                            <div class="accordion-body">
+                                <h3 class="h6 fw-bold mb-2 text-navy-900" style="color: var(--c-navy-900);">Cookies</h3>
+                                <p>Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert.</p>
+                                <p>Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs oder zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (z. B. für die Anzeige von Google Maps) erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert.</p>
+                                
+                                <h3 class="h6 fw-bold mb-2 mt-4 text-navy-900" style="color: var(--c-navy-900);">Kontaktformular</h3>
+                                <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+                                <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                5. Plugins und Tools
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#datenschutzAccordion">
+                            <div class="accordion-body">
+                                <h3 class="h6 fw-bold mb-2 text-navy-900" style="color: var(--c-navy-900);">Google Maps</h3>
+                                <p>Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland.</p>
+                                <p>Wir haben Google Maps so auf unserer Website eingebunden, dass die Karte erst nach Ihrer expliziten Zustimmung (über den Cookie-Banner oder direkt am Platzhalter der Karte) geladen wird. Ohne Ihre Zustimmung findet keine Datenübertragung an Google statt.</p>
+                                <p>Wenn Sie der Nutzung zustimmen, kann Google Informationen über Ihre Nutzung der Website, einschließlich Ihrer IP-Adresse, erfassen, speichern und verarbeiten. Die Datenverarbeitung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.</p>
+                                <p>Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card-luxury p-4 sticky-top" style="top: 100px;">
+                    <h3 class="h5 mb-4" style="color: var(--c-navy-900);">Weiterführende Links</h3>
+                    
+                    <div class="list-group list-group-flush border-0">
+                        <a href="{% url 'base:impressum' %}" class="list-group-item list-group-item-action border-0 px-0 py-3 d-flex justify-content-between align-items-center" style="background: transparent; color: var(--c-navy-900); border-bottom: 1px solid var(--c-cream-200) !important;">
+                            Impressum
+                            <i data-lucide="chevron-right" style="width: 18px; color: var(--c-teal-500);"></i>
+                        </a>
+                        <a href="{% url 'base:neupatienten' %}" class="list-group-item list-group-item-action border-0 px-0 py-3 d-flex justify-content-between align-items-center" style="background: transparent; color: var(--c-navy-900); border-bottom: 1px solid var(--c-cream-200) !important;">
+                            Neupatienten Info
+                            <i data-lucide="chevron-right" style="width: 18px; color: var(--c-teal-500);"></i>
+                        </a>
+                        <a href="{% url 'base:index' %}" class="list-group-item list-group-item-action border-0 px-0 py-3 d-flex justify-content-between align-items-center" style="background: transparent; color: var(--c-navy-900);">
+                            Zur Startseite
+                            <i data-lucide="chevron-right" style="width: 18px; color: var(--c-teal-500);"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-
-    <!-- 3. Server-Logfiles -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingLog">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLog" aria-expanded="false" aria-controls="collapseLog">
-          3. Server-Logfiles
-        </button>
-      </h2>
-      <div id="collapseLog" class="accordion-collapse collapse" aria-labelledby="headingLog" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Beim Aufruf unserer Website werden automatisch Informationen wie IP-Adresse, Datum, Uhrzeit, aufgerufene Seiten und Browsertyp in Server-Logfiles gespeichert. Diese Daten dienen ausschließlich der technischen Überwachung und Sicherheit und werden nach spätestens 30 Tagen gelöscht.
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. Cookies -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingCookies">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCookies" aria-expanded="false" aria-controls="collapseCookies">
-          4. Cookies
-        </button>
-      </h2>
-      <div id="collapseCookies" class="accordion-collapse collapse" aria-labelledby="headingCookies" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Unsere Website verwendet Cookies, um bestimmte Funktionen bereitzustellen. Die Nutzung ist auch ohne Cookies möglich, allerdings mit eingeschränkter Funktionalität. Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO.
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. Kontaktformular -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingContact5">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContact5" aria-expanded="false" aria-controls="collapseContact5">
-          5. Kontaktformular
-        </button>
-      </h2>
-      <div id="collapseContact5" class="accordion-collapse collapse" aria-labelledby="headingContact5" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Wenn Sie uns über das Kontaktformular kontaktieren, werden Ihre Angaben (Name, E-Mail-Adresse, Telefonnummer, Betreff, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet und gespeichert. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen). Ihre Daten werden nicht an Dritte weitergegeben und nach Abschluss der Bearbeitung gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Hosting -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingHosting">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHosting" aria-expanded="false" aria-controls="collapseHosting">
-          6. Hosting
-        </button>
-      </h2>
-      <div id="collapseHosting" class="accordion-collapse collapse" aria-labelledby="headingHosting" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Unsere Website wird bei einem externen Hosting-Anbieter gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Es kann sich hierbei um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Websitezugriffe und sonstige Daten handeln. Der Einsatz des Hosters erfolgt im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. Rechte der Nutzer -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingRights">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRights" aria-expanded="false" aria-controls="collapseRights">
-          7. Ihre Rechte
-        </button>
-      </h2>
-      <div id="collapseRights" class="accordion-collapse collapse" aria-labelledby="headingRights" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Widerspruch (Art. 15–21 DSGVO). Bitte wenden Sie sich hierzu an die im <a href="{% url "base:impressum" %}">Impressum</a> genannte Adresse.
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. Kontakt -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingContact">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContact" aria-expanded="false" aria-controls="collapseContact">
-          8. Kontakt
-        </button>
-      </h2>
-      <div id="collapseContact" class="accordion-collapse collapse" aria-labelledby="headingContact" data-bs-parent="#datenschutzAccordion">
-        <div class="accordion-body">
-          Bei Fragen zum Datenschutz erreichen Sie uns per E-Mail oder über das Kontaktformular. Die Verarbeitung erfolgt gem. Art. 6 Abs. 1 lit. b DSGVO.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</section>
+{% endblock %}
