@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [
     "www.ha-praxis.com",
     "localhost",
     "127.0.0.1",
+    "testserver",
 ]
 
 INSTALLED_APPS = [
@@ -56,6 +57,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "base.context_processors.recaptcha",
             ],
         },
     },
@@ -232,6 +234,11 @@ DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER")
 
 TAGGIT_CASE_INSENSITIVE = True
 
+# ── reCAPTCHA v3 ──────────────────────────────────────────────────────────────
+RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY", "")
+RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY", "")
+RECAPTCHA_MIN_SCORE = float(os.getenv("RECAPTCHA_MIN_SCORE", "0.5"))
+
 WHITENOISE_MANIFEST_STRICT = False
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
@@ -258,7 +265,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
