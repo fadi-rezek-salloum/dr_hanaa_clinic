@@ -294,6 +294,11 @@
                     <h3 class="h4 mb-4" style="color: var(--c-navy-900);">Schreiben Sie uns</h3>
                     <form action="{% url 'base:contact' %}" method="POST" id="contact-form" novalidate>
                         {% csrf_token %}
+                        {# Honeypot — invisible to real users; bots will fill it and get silently dropped. #}
+                        <div style="display:none;" aria-hidden="true">
+                            <label for="hp_website">Website (nicht ausfüllen)</label>
+                            <input type="text" id="hp_website" name="hp_website" value="" tabindex="-1" autocomplete="off">
+                        </div>
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <div class="form-field">

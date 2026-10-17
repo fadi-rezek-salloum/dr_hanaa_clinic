@@ -82,9 +82,10 @@ class ContactView(IndexView, FormView):
             with urllib.request.urlopen(req, timeout=5) as resp:
                 result = json.loads(resp.read().decode("utf-8"))
         except Exception as e:
-            # Network failure – be lenient to avoid blocking real users
+            # In production, treat network failures as suspicious and reject.
+            # In DEBUG, be lenient so local development still works.
             logger.warning("reCAPTCHA verification network error: %s", e)
-            return True
+            return settings.DEBUG
 
         success = result.get("success", False)
         error_codes = result.get("error-codes", [])
@@ -105,8 +106,22 @@ class ContactView(IndexView, FormView):
         )
     )
     def post(self, request, *args, **kwargs):
+        # ── 1. Honeypot check (silent drop) ───────────────────────────────────
+        if request.POST.get("hp_website", ""):
+            logger.warning(
+                "Honeypot triggered by IP %s – silently dropping submission.",
+                request.META.get("REMOTE_ADDR"),
+            )
+            # Fake a success response so bots don't know they were caught.
+            messages.success(
+                request,
+                "Vielen Dank für Ihre Nachricht! Eine Bestätigung wurde an Ihre E-Mail gesendet.",
+            )
+            return HttpResponseRedirect(f"{self.success_url}#contact")
+
         form = self.form_class(request.POST)
 
+        # ── 2. Rate-limit check ────────────────────────────────────────────────
         if getattr(request, "limited", False):
             logger.warning(
                 "Contact form submission blocked: rate limit exceeded for IP %s",
@@ -118,7 +133,9 @@ class ContactView(IndexView, FormView):
             )
             return self.form_invalid(form)
 
+        # ── 3. Form validation (incl. spam-content checks in forms.py) ─────────
         if form.is_valid():
+            # ── 4. reCAPTCHA v2 server-side verification ───────────────────────
             token = request.POST.get("g-recaptcha-response", "")
             ok = self._verify_recaptcha(token)
             if not ok:
