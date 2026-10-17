@@ -294,7 +294,3 @@ textarea.form-control-premium{min-height:120px;resize:vertical}
   html{scroll-behavior:auto}
 }
 
-/* ── reCAPTCHA v3 (hidden badge per Google Terms when attribution text is present) ── */
-.grecaptcha-badge {
-  visibility: hidden !important;
-}

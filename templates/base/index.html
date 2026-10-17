@@ -294,7 +294,6 @@
                     <h3 class="h4 mb-4" style="color: var(--c-navy-900);">Schreiben Sie uns</h3>
                     <form action="{% url 'base:contact' %}" method="POST" id="contact-form" novalidate>
                         {% csrf_token %}
-                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <div class="form-field">
@@ -332,7 +331,15 @@
                                     <textarea id="id_nachricht" name="nachricht" class="form-control-premium" placeholder="Schreiben Sie uns Ihr Anliegen..." required></textarea>
                                 </div>
                             </div>
-                            <div class="col-12 mt-4 pt-2">
+                            {% if RECAPTCHA_SITE_KEY %}
+                            <div class="col-12">
+                                <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_SITE_KEY }}" data-callback="onRecaptchaSuccess"></div>
+                                <div id="recaptcha-error" class="text-danger small mt-2" style="display:none; font-weight:500;">
+                                    Bitte bestätigen Sie, dass Sie kein Roboter sind.
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="col-12 mt-2">
                                 <button type="submit" id="contact-submit-btn" class="btn-primary-luxury w-100 justify-content-center">
                                     <span id="contact-submit-text">Nachricht absenden</span>
                                     <svg aria-hidden="true" focusable="false" style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -342,8 +349,7 @@
                     </form>
                     <p class="text-center mt-4 mb-0" style="font-size:0.8125rem; color:var(--text-muted); line-height: 1.6;">
                         Mit dem Absenden akzeptieren Sie unsere <a href="{% url 'base:datenschutz' %}" style="color:var(--c-teal-500); text-decoration:none;">Datenschutzerklärung</a>.<br>
-                        Keine medizinische Beratung oder Terminvergabe per E-Mail.<br>
-                        <span style="font-size:0.75rem;">Diese Seite ist durch reCAPTCHA geschützt und es gelten die <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--c-teal-500); text-decoration:underline;">Datenschutzbestimmungen</a> und <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:var(--c-teal-500); text-decoration:underline;">Nutzungsbedingungen</a> von Google.</span>
+                        Keine medizinische Beratung oder Terminvergabe per E-Mail.
                     </p>
                 </div>
             </div>
@@ -543,63 +549,46 @@
         window.addEventListener('globalConsentGiven', loadMap);
     }
 
-    // ── Contact form reCAPTCHA v3 ────────────────────────────────────────────
+    // ── Contact form – required validation & loading state ───────────────────
     function initContactForm() {
         var form = document.getElementById('contact-form');
         if (!form) return;
-
-        var submitBtn = document.getElementById('contact-submit-btn');
+        var submitBtn  = document.getElementById('contact-submit-btn');
         var submitText = document.getElementById('contact-submit-text');
-        var siteKey = "{{ RECAPTCHA_SITE_KEY|default:'' }}";
+        var siteKey    = "{{ RECAPTCHA_SITE_KEY|default:'' }}";
 
         form.addEventListener('submit', function (e) {
+            // Check HTML5 required fields
             if (form.checkValidity && !form.checkValidity()) {
                 form.reportValidity();
                 return;
             }
 
+            // Ensure reCAPTCHA v2 checkbox is completed
             if (siteKey && typeof grecaptcha !== 'undefined') {
-                e.preventDefault();
-
-                if (submitBtn) {
-                    submitBtn.disabled = true;
-                    if (submitText) submitText.textContent = "Wird gesendet...";
-                }
-
-                var submitted = false;
-                var fallbackTimer = setTimeout(function () {
-                    if (!submitted) {
-                        submitted = true;
-                        HTMLFormElement.prototype.submit.call(form);
+                var recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    e.preventDefault();
+                    var errorEl = document.getElementById('recaptcha-error');
+                    if (errorEl) {
+                        errorEl.style.display = 'block';
                     }
-                }, 3500);
-
-                grecaptcha.ready(function () {
-                    grecaptcha.execute(siteKey, { action: 'contact' }).then(function (token) {
-                        if (!submitted) {
-                            submitted = true;
-                            clearTimeout(fallbackTimer);
-                            var input = document.getElementById('g-recaptcha-response');
-                            if (input) input.value = token;
-                            HTMLFormElement.prototype.submit.call(form);
-                        }
-                    }).catch(function (err) {
-                        console.error('reCAPTCHA execution error:', err);
-                        if (!submitted) {
-                            submitted = true;
-                            clearTimeout(fallbackTimer);
-                            HTMLFormElement.prototype.submit.call(form);
-                        }
-                    });
-                });
-            } else {
-                if (submitBtn) {
-                    submitBtn.disabled = true;
-                    if (submitText) submitText.textContent = "Wird gesendet...";
+                    return;
                 }
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                if (submitText) submitText.textContent = 'Wird gesendet...';
             }
         });
     }
+
+    // Called automatically by reCAPTCHA v2 once the user ticks the box
+    window.onRecaptchaSuccess = function() {
+        var errorEl = document.getElementById('recaptcha-error');
+        if (errorEl) errorEl.style.display = 'none';
+    };
 
     // ── Boot ─────────────────────────────────────────────────────────────────
     function boot() {

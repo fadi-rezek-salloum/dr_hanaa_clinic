@@ -18,16 +18,22 @@ class IndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "base/index.html")
 
-    def test_recaptcha_script_and_field_rendered(self):
+    def test_recaptcha_v2_widget_rendered(self):
+        """The .g-recaptcha div with the site key must appear in the form."""
         response = self.client.get(reverse("base:index"))
         content = response.content.decode("utf-8")
         if settings.RECAPTCHA_SITE_KEY:
-            self.assertIn("https://www.google.com/recaptcha/api.js?render=", content)
+            self.assertIn("class=\"g-recaptcha\"", content)
             self.assertIn(settings.RECAPTCHA_SITE_KEY, content)
-        self.assertIn('name="g-recaptcha-response"', content)
-        self.assertIn('id="g-recaptcha-response"', content)
+            # v2 script (no ?render= param)
+            self.assertIn(
+                "https://www.google.com/recaptcha/api.js",
+                content,
+            )
+            self.assertNotIn("?render=", content)
 
     def test_html_document_structure(self):
+        """The page must end with </html> and the form must be inside the document."""
         response = self.client.get(reverse("base:index"))
         content = response.content.decode("utf-8").strip()
         self.assertTrue(content.endswith("</html>"))
@@ -54,9 +60,10 @@ class ContactViewTests(TestCase):
     @patch("urllib.request.urlopen")
     @patch("threading.Thread.start")
     @override_settings(DEBUG=False)
-    def test_successful_submission_with_high_score(self, mock_thread, mock_urlopen):
+    def test_successful_submission_when_recaptcha_passes(self, mock_thread, mock_urlopen):
+        """Valid form + successful reCAPTCHA v2 → contact saved."""
         mock_resp = MagicMock()
-        mock_resp.read.return_value = json.dumps({"success": True, "score": 0.9}).encode("utf-8")
+        mock_resp.read.return_value = json.dumps({"success": True}).encode("utf-8")
         mock_resp.__enter__.return_value = mock_resp
         mock_urlopen.return_value = mock_resp
 
@@ -66,19 +73,8 @@ class ContactViewTests(TestCase):
 
     @patch("urllib.request.urlopen")
     @override_settings(DEBUG=False)
-    def test_submission_blocked_in_production_when_score_low(self, mock_urlopen):
-        mock_resp = MagicMock()
-        mock_resp.read.return_value = json.dumps({"success": True, "score": 0.2}).encode("utf-8")
-        mock_resp.__enter__.return_value = mock_resp
-        mock_urlopen.return_value = mock_resp
-
-        response = self.client.post(self.contact_url, data=self.valid_data)
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(Contact.objects.filter(email="max@example.com").exists())
-
-    @patch("urllib.request.urlopen")
-    @override_settings(DEBUG=False)
-    def test_submission_blocked_in_production_when_bot_detected(self, mock_urlopen):
+    def test_blocked_in_production_when_bot_detected(self, mock_urlopen):
+        """reCAPTCHA v2 returns success=False → form rejected in production."""
         mock_resp = MagicMock()
         mock_resp.read.return_value = json.dumps({
             "success": False,
@@ -91,12 +87,21 @@ class ContactViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Contact.objects.filter(email="max@example.com").exists())
 
+    @override_settings(DEBUG=False)
+    def test_blocked_in_production_when_no_token(self):
+        """No reCAPTCHA token at all → rejected in production."""
+        data = {**self.valid_data, "g-recaptcha-response": ""}
+        response = self.client.post(self.contact_url, data=data)
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Contact.objects.filter(email="max@example.com").exists())
+
     @patch("urllib.request.urlopen")
     @patch("threading.Thread.start")
     @override_settings(DEBUG=True)
-    def test_submission_allowed_in_debug_mode_even_if_recaptcha_fails(self, mock_thread, mock_urlopen):
+    def test_submission_allowed_in_debug_even_if_recaptcha_fails(self, mock_thread, mock_urlopen):
+        """In DEBUG mode, a failed reCAPTCHA must not block the submission."""
         mock_resp = MagicMock()
-        mock_resp.read.return_value = json.dumps({"success": False, "score": 0.0}).encode("utf-8")
+        mock_resp.read.return_value = json.dumps({"success": False}).encode("utf-8")
         mock_resp.__enter__.return_value = mock_resp
         mock_urlopen.return_value = mock_resp
 
@@ -108,6 +113,7 @@ class ContactViewTests(TestCase):
     @patch("threading.Thread.start")
     @override_settings(DEBUG=False)
     def test_network_failure_fails_open_gracefully(self, mock_thread, mock_urlopen):
+        """If Google's API is unreachable, the form should still go through."""
         mock_urlopen.side_effect = URLError("Temporary DNS error")
 
         response = self.client.post(self.contact_url, data=self.valid_data, follow=True)

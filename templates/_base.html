@@ -222,9 +222,9 @@
 
     {% block extra_scripts %}{% endblock extra_scripts %}
 
-    <!-- reCAPTCHA v3: loaded globally so it works regardless of template include vs extends -->
+    <!-- reCAPTCHA v2: loads the checkbox widget script -->
     {% if RECAPTCHA_SITE_KEY %}
-    <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     {% endif %}
 
     <script src="{% static 'js/main.js' %}" defer></script>

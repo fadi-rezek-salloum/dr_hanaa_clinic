@@ -55,18 +55,18 @@ class ContactView(IndexView, FormView):
         return context
 
     def _verify_recaptcha(self, token):
-        """Verify a reCAPTCHA v3 token with Google's siteverify API.
+        """Verify a reCAPTCHA v2 token with Google's siteverify API.
 
-        Returns (success: bool, score: float).
+        Returns True if the checkbox was successfully checked by a human.
         """
         secret = settings.RECAPTCHA_SECRET_KEY
         if not secret:
             logger.info("reCAPTCHA skipped: No secret key configured.")
-            return True, 1.0
+            return True
 
         if not token:
-            logger.warning("reCAPTCHA verification failed: No token received.")
-            return False, 0.0
+            logger.warning("reCAPTCHA failed: No token received (user may not have checked the box).")
+            return False
 
         data = urllib.parse.urlencode(
             {"secret": secret, "response": token}
@@ -80,45 +80,35 @@ class ContactView(IndexView, FormView):
             with urllib.request.urlopen(req, timeout=5) as resp:
                 result = json.loads(resp.read().decode("utf-8"))
         except Exception as e:
-            # Network failure – log warning and be lenient to avoid blocking real users
+            # Network failure – be lenient to avoid blocking real users
             logger.warning("reCAPTCHA verification network error: %s", e)
-            return True, 1.0
+            return True
 
         success = result.get("success", False)
-        score = float(result.get("score", 0.0))
         error_codes = result.get("error-codes", [])
 
-        if success and score >= settings.RECAPTCHA_MIN_SCORE:
-            logger.info("reCAPTCHA passed: score=%.2f", score)
+        if success:
+            logger.info("reCAPTCHA v2 passed.")
         else:
-            logger.warning(
-                "reCAPTCHA failed: success=%s, score=%.2f, errors=%s",
-                success,
-                score,
-                error_codes,
-            )
+            logger.warning("reCAPTCHA v2 failed: errors=%s", error_codes)
 
-        return success, score
+        return success
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
             token = request.POST.get("g-recaptcha-response", "")
-            ok, score = self._verify_recaptcha(token)
-            if not ok or score < settings.RECAPTCHA_MIN_SCORE:
+            ok = self._verify_recaptcha(token)
+            if not ok:
                 if settings.DEBUG:
                     logger.warning(
-                        "DEBUG mode: reCAPTCHA verification rejected (ok=%s, score=%.2f). "
-                        "Bypassing rejection for local development.",
-                        ok,
-                        score,
+                        "DEBUG mode: reCAPTCHA check failed. "
+                        "Bypassing rejection for local development."
                     )
                 else:
                     messages.error(
                         request,
-                        "Ihre Nachricht konnte nicht gesendet werden – "
-                        "die Anti-Spam-Prüfung ist fehlgeschlagen. "
-                        "Bitte versuchen Sie es erneut.",
+                        "Bitte bestätigen Sie, dass Sie kein Roboter sind.",
                     )
                     return self.form_invalid(form)
             return self.form_valid(form)
