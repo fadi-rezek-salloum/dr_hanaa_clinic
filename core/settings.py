@@ -234,10 +234,16 @@ DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER")
 
 TAGGIT_CASE_INSENSITIVE = True
 
-# ── reCAPTCHA v3 ──────────────────────────────────────────────────────────────
+# ── reCAPTCHA v2 ──────────────────────────────────────────────────────────────
 RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY", "")
 RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY", "")
-RECAPTCHA_MIN_SCORE = float(os.getenv("RECAPTCHA_MIN_SCORE", "0.5"))
+
+# ── Rate Limiting (django-ratelimit) ──────────────────────────────────────────
+RATELIMIT_ENABLE = os.getenv("RATELIMIT_ENABLE", "True").lower() in ("true", "1", "t")
+RATELIMIT_USE_CACHE = "default"
+if os.getenv("RATELIMIT_IP_META_KEY"):
+    RATELIMIT_IP_META_KEY = os.getenv("RATELIMIT_IP_META_KEY")
+CONTACT_RATELIMIT_RATE = os.getenv("CONTACT_RATELIMIT_RATE", "5/m")
 
 WHITENOISE_MANIFEST_STRICT = False
 

@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch
 from urllib.error import URLError
 
 from django.conf import settings
+from django.core.cache import cache
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
@@ -45,6 +46,7 @@ class IndexViewTests(TestCase):
 
 class ContactViewTests(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = Client()
         self.contact_url = reverse("base:contact")
         self.valid_data = {
@@ -119,6 +121,36 @@ class ContactViewTests(TestCase):
         response = self.client.post(self.contact_url, data=self.valid_data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(Contact.objects.filter(email="max@example.com").exists())
+
+    @patch("urllib.request.urlopen")
+    @patch("threading.Thread.start")
+    @override_settings(DEBUG=False)
+    def test_contact_rate_limit_blocks_excessive_submissions(self, mock_thread, mock_urlopen):
+        """Submissions exceeding the rate limit (5/m) must be blocked."""
+        mock_resp = MagicMock()
+        mock_resp.read.return_value = json.dumps({"success": True}).encode("utf-8")
+        mock_resp.__enter__.return_value = mock_resp
+        mock_urlopen.return_value = mock_resp
+
+        # Send 5 allowed submissions
+        for i in range(5):
+            res = self.client.post(
+                self.contact_url,
+                data={**self.valid_data, "email": f"user{i}@example.com"},
+            )
+            self.assertEqual(res.status_code, 302)
+
+        self.assertEqual(Contact.objects.count(), 5)
+
+        # 6th submission from the same IP within the minute must be blocked
+        blocked_res = self.client.post(
+            self.contact_url,
+            data={**self.valid_data, "email": "blocked@example.com"},
+        )
+        self.assertEqual(blocked_res.status_code, 200)
+        # Database count must still be 5
+        self.assertEqual(Contact.objects.count(), 5)
+
 
 
 class StaticPagesTests(TestCase):

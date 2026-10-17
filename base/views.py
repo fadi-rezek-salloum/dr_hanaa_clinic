@@ -10,7 +10,9 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import FormView, TemplateView
+from django_ratelimit.decorators import ratelimit
 
 from staff.models import Staff
 from timing.models import ConsultationTime, FreeAdmission, PracticeClosure
@@ -94,8 +96,28 @@ class ContactView(IndexView, FormView):
 
         return success
 
+    @method_decorator(
+        ratelimit(
+            key="ip",
+            rate=getattr(settings, "CONTACT_RATELIMIT_RATE", "10/m"),
+            method="POST",
+            block=False,
+        )
+    )
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+
+        if getattr(request, "limited", False):
+            logger.warning(
+                "Contact form submission blocked: rate limit exceeded for IP %s",
+                request.META.get("REMOTE_ADDR"),
+            )
+            messages.error(
+                request,
+                "Zu viele Anfragen in kurzer Zeit. Bitte warten Sie einen Moment, bevor Sie eine weitere Nachricht senden.",
+            )
+            return self.form_invalid(form)
+
         if form.is_valid():
             token = request.POST.get("g-recaptcha-response", "")
             ok = self._verify_recaptcha(token)
