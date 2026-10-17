@@ -99,7 +99,7 @@ class ContactView(IndexView, FormView):
     @method_decorator(
         ratelimit(
             key="ip",
-            rate=getattr(settings, "CONTACT_RATELIMIT_RATE", "10/m"),
+            rate=lambda g, r: getattr(settings, "CONTACT_RATELIMIT_RATE", "1/30m"),
             method="POST",
             block=False,
         )
@@ -114,7 +114,7 @@ class ContactView(IndexView, FormView):
             )
             messages.error(
                 request,
-                "Zu viele Anfragen in kurzer Zeit. Bitte warten Sie einen Moment, bevor Sie eine weitere Nachricht senden.",
+                "Sie haben vor kurzem bereits eine Nachricht gesendet. Bitte warten Sie 30 Minuten, bevor Sie eine weitere Nachricht senden.",
             )
             return self.form_invalid(form)
 

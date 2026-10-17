@@ -126,30 +126,25 @@ class ContactViewTests(TestCase):
     @patch("threading.Thread.start")
     @override_settings(DEBUG=False)
     def test_contact_rate_limit_blocks_excessive_submissions(self, mock_thread, mock_urlopen):
-        """Submissions exceeding the rate limit (5/m) must be blocked."""
+        """1 message allowed per 30 minutes. 2nd consecutive submission must be blocked."""
         mock_resp = MagicMock()
         mock_resp.read.return_value = json.dumps({"success": True}).encode("utf-8")
         mock_resp.__enter__.return_value = mock_resp
         mock_urlopen.return_value = mock_resp
 
-        # Send 5 allowed submissions
-        for i in range(5):
-            res = self.client.post(
-                self.contact_url,
-                data={**self.valid_data, "email": f"user{i}@example.com"},
-            )
-            self.assertEqual(res.status_code, 302)
+        # 1st submission succeeds
+        res1 = self.client.post(self.contact_url, data=self.valid_data)
+        self.assertEqual(res1.status_code, 302)
+        self.assertEqual(Contact.objects.count(), 1)
 
-        self.assertEqual(Contact.objects.count(), 5)
-
-        # 6th submission from the same IP within the minute must be blocked
+        # 2nd consecutive submission from the same IP within 30m must be blocked
         blocked_res = self.client.post(
             self.contact_url,
             data={**self.valid_data, "email": "blocked@example.com"},
         )
         self.assertEqual(blocked_res.status_code, 200)
-        # Database count must still be 5
-        self.assertEqual(Contact.objects.count(), 5)
+        # Database count must still be 1 (blocked submission was not saved)
+        self.assertEqual(Contact.objects.count(), 1)
 
 
 
